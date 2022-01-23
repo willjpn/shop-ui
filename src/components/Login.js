@@ -3,6 +3,7 @@ import Header from "./Header";
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../actions/userActions";
 import {useEffect} from "react";
+import {Link} from "react-router-dom";
 
 const Login = ({history}) => {
 
@@ -41,6 +42,7 @@ const Login = ({history}) => {
                         <input type="password" id="password" name="password" value={password}
                                onChange={(e) => setPassword(e.target.value)}/>
                         <button onClick={(e) => submit(e)}>Submit</button>
+                        <Link to="/signup">Don't Have An Account?</Link>
                     </form>
                     {error && <h2>{error.message}</h2>}
                 </Fragment>

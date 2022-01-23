@@ -5,7 +5,7 @@ import {
     LOGIN_FAILURE,
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
-    LOGOUT
+    LOGOUT, SIGNUP_DEFAULT, SIGNUP_FAILURE, SIGNUP_REQUEST, SIGNUP_SUCCESS
 } from "../constants/userConstants";
 import {SET_ACCESS_TOKEN} from "../constants/authConstants";
 import {ErrorMessage} from "../utils/errorHandler";
@@ -38,6 +38,8 @@ export const logout = () => async (dispatch) => {
         // remove access token
         dispatch({type: SET_ACCESS_TOKEN, payload: ""})
 
+        // restore signup reducer state to default
+        dispatch({type: SIGNUP_DEFAULT})
 
     } catch (err) {
 
@@ -56,5 +58,19 @@ export const getUser = () => async (dispatch) => {
     } catch (err) {
         const errorMessage = new ErrorMessage(err)
         dispatch({type: GET_USER_FAILURE, payload: errorMessage})
+    }
+}
+
+export const createNewUser = (payload) => async (dispatch) => {
+    try {
+        dispatch({type: SIGNUP_REQUEST})
+        await axios.post("http://localhost:8000/user", payload)
+
+        await dispatch(login(payload.email, payload.password))
+
+        dispatch({type: SIGNUP_SUCCESS})
+    } catch (err) {
+        const errorMessage = new ErrorMessage(err)
+        dispatch({type: SIGNUP_FAILURE, payload: errorMessage})
     }
 }

@@ -3,7 +3,7 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import {productReducer, productsReducer} from "./reducers/productReducer";
 import {authReducer} from "./reducers/authReducer";
-import {userDetailsReducer, userReducer} from "./reducers/userReducer";
+import {signupReducer, userDetailsReducer, userReducer} from "./reducers/userReducer";
 import {basketReducer} from "./reducers/basketReducer";
 
 const reducer = combineReducers({
@@ -13,6 +13,7 @@ const reducer = combineReducers({
     userDetails: userDetailsReducer,
     basket: basketReducer,
     product: productReducer,
+    signup: signupReducer
 })
 
 const localStorageBasket = localStorage.getItem("basket") ? JSON.parse(localStorage.getItem("basket")) : []
