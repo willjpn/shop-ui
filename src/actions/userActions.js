@@ -50,7 +50,6 @@ export const getUser = () => async (dispatch) => {
 
         const response = await axios.get('http://localhost:8000/user/get-user')
 
-        console.log("response from getUser", response.data)
 
         dispatch({type: GET_USER_SUCCESS, payload: response.data})
 

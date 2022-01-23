@@ -9,6 +9,7 @@ import {injectStore} from "./common/axios";
 
 injectStore(store)
 
+
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
