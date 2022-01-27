@@ -21,6 +21,9 @@ import {
 import {basketReducer} from "./reducers/basketReducer";
 
 const reducer = combineReducers({
+    basket: basketReducer,
+    auth: authReducer,
+    signup: signupReducer,
     products: productsReducer,
     product: productReducer,
     addProduct: addProductReducer,
@@ -33,10 +36,6 @@ const reducer = combineReducers({
     editUser: editUserReducer,
     updateUser: updateUserReducer,
     deleteUser: deleteUserReducer,
-    auth: authReducer,
-    basket: basketReducer,
-    signup: signupReducer,
-
 })
 
 const localStorageBasket = localStorage.getItem("basket") ? JSON.parse(localStorage.getItem("basket")) : []
@@ -45,7 +44,6 @@ const localStorageBasket = localStorage.getItem("basket") ? JSON.parse(localStor
 const initialState = {
     basket: {basket: localStorageBasket}
 }
-
 
 const store = createStore(
     reducer,

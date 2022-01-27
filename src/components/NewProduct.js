@@ -46,14 +46,14 @@ const NewProduct = ({history}) => {
         if (userInfo._id && !userInfo.isAdmin) {
             history.push("/")
         }
-    }, [userInfo])
+    }, [userInfo, history])
 
     useEffect(() => {
         if (success) {
             history.push("/product-list")
             dispatch({type: ADD_PRODUCT_RESET})
         }
-    }, [success])
+    }, [success, history, dispatch])
 
     const submitProduct = (e) => {
         e.preventDefault()

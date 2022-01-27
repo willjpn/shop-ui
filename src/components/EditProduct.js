@@ -35,7 +35,7 @@ const EditProduct = ({match, history}) => {
         } else {
             dispatch(fetchProduct(id))
         }
-    }, [userInfo])
+    }, [userInfo, dispatch, history, id])
 
     useEffect(() => {
         if (product.name) {
@@ -58,7 +58,7 @@ const EditProduct = ({match, history}) => {
             history.push('/product-list')
             dispatch({type: EDIT_PRODUCT_RESET})
         }
-    }, [success])
+    }, [success, history, dispatch])
 
     return (
         <Fragment>

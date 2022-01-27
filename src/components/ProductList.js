@@ -28,7 +28,7 @@ const ProductList = ({history}) => {
         } else {
             dispatch(fetchProducts())
         }
-    }, [userInfo])
+    }, [userInfo, dispatch, history])
 
     const addProduct = () => {
         history.push("/product/new")

@@ -27,7 +27,7 @@ const UserList = ({history}) => {
         } else {
             dispatch(getUsers())
         }
-    }, [userInfo])
+    }, [userInfo, dispatch, history])
 
     const addUser = () => {
         history.push("/user/new")

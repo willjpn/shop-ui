@@ -35,7 +35,7 @@ const EditUser = ({match, history}) => {
         } else {
             dispatch(fetchEditUser(id))
         }
-    }, [userInfo])
+    }, [userInfo, dispatch, history, id])
 
     useEffect(() => {
         if (editUser.firstName) {
@@ -60,7 +60,7 @@ const EditUser = ({match, history}) => {
             history.push('/user-list')
             dispatch({type: UPDATE_USER_RESET})
         }
-    }, [success])
+    }, [success, history, dispatch])
 
     return (
         <Fragment>

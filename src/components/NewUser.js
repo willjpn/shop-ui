@@ -44,7 +44,7 @@ const NewProduct = ({history}) => {
         if (userInfo._id && !userInfo.isAdmin) {
             history.push("/")
         }
-    }, [userInfo])
+    }, [userInfo, history])
 
     const submitUser = (e) => {
         e.preventDefault()
@@ -56,7 +56,7 @@ const NewProduct = ({history}) => {
             history.push("/user-list")
             dispatch({type: ADD_USER_RESET})
         }
-    }, [success])
+    }, [success, history, dispatch])
 
     const goBack = () => {
         history.push("/user-list")
