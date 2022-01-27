@@ -1,19 +1,42 @@
 import {createStore, applyMiddleware, combineReducers} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import {productReducer, productsReducer} from "./reducers/productReducer";
+import {
+    addProductReducer,
+    deleteProductReducer,
+    editProductReducer,
+    productReducer,
+    productsReducer
+} from "./reducers/productReducer";
 import {authReducer} from "./reducers/authReducer";
-import {signupReducer, userDetailsReducer, userReducer} from "./reducers/userReducer";
+import {
+    addUserReducer,
+    deleteUserReducer,
+    editUserReducer,
+    signupReducer, updateUserReducer,
+    userDetailsReducer,
+    userReducer,
+    usersReducer
+} from "./reducers/userReducer";
 import {basketReducer} from "./reducers/basketReducer";
 
 const reducer = combineReducers({
     products: productsReducer,
-    user: userReducer,
-    auth: authReducer,
-    userDetails: userDetailsReducer,
-    basket: basketReducer,
     product: productReducer,
-    signup: signupReducer
+    addProduct: addProductReducer,
+    editProduct: editProductReducer,
+    deleteProduct: deleteProductReducer,
+    users: usersReducer,
+    user: userReducer,
+    userDetails: userDetailsReducer,
+    addUser: addUserReducer,
+    editUser: editUserReducer,
+    updateUser: updateUserReducer,
+    deleteUser: deleteUserReducer,
+    auth: authReducer,
+    basket: basketReducer,
+    signup: signupReducer,
+
 })
 
 const localStorageBasket = localStorage.getItem("basket") ? JSON.parse(localStorage.getItem("basket")) : []
@@ -22,7 +45,6 @@ const localStorageBasket = localStorage.getItem("basket") ? JSON.parse(localStor
 const initialState = {
     basket: {basket: localStorageBasket}
 }
-
 
 
 const store = createStore(

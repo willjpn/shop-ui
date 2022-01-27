@@ -26,6 +26,16 @@ const Header = () => {
                     <button>
                         <Link to="/user-profile">Profile</Link>
                     </button>
+                    {userInfo.isAdmin &&
+                    <Fragment>
+                        <button>
+                            <Link to="/product-list">Webshop Products</Link>
+                        </button>
+                        <button>
+                            <Link to="/user-list">See Users</Link>
+                        </button>
+                    </Fragment>
+                    }
                 </Fragment>
                 :
                 <button>

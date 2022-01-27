@@ -11,6 +11,10 @@ let fetchingAccessToken = false;
 
 let subscribers = [];
 
+// this works by slotting creating a promise that resolves before the .then() part of the request
+// for example: if we request products but it requires authorization and the user doesn't have a valid access token, this axios interceptor will run
+// before the .then() of the fetch products action which will allow the rest of the action to continue once we have access token
+
 const refreshTokenAndRequest = (config) => {
     const retryRequest = new Promise((resolve, reject) => addSubscriber(() => {
         axios(config).then(resolve).catch(reject);

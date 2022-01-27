@@ -1,5 +1,5 @@
 import Header from "./Header"
-import React, {Fragment, useEffect, useState} from "react";
+import React, {Fragment, useState} from "react";
 import {Redirect} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux";
 import {createNewUser} from "../actions/userActions";
@@ -26,10 +26,6 @@ const Signup = () => {
             }
         })
     }
-
-    useEffect(() => {
-        console.log("payload", payload)
-    }, [payload])
 
     const submitHandler = (e) => {
         e.preventDefault()
