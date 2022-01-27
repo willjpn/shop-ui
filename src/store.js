@@ -12,7 +12,7 @@ import {authReducer} from "./reducers/authReducer";
 import {
     addUserReducer,
     deleteUserReducer,
-    editUserReducer,
+    editUserReducer, resetPasswordReducer,
     signupReducer, updateUserReducer,
     userDetailsReducer,
     userReducer,
@@ -36,6 +36,7 @@ const reducer = combineReducers({
     editUser: editUserReducer,
     updateUser: updateUserReducer,
     deleteUser: deleteUserReducer,
+    resetPassword: resetPasswordReducer,
 })
 
 const localStorageBasket = localStorage.getItem("basket") ? JSON.parse(localStorage.getItem("basket")) : []

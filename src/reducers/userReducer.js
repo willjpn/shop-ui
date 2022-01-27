@@ -20,7 +20,7 @@ import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
     LOGOUT,
-    REMOVE_USER,
+    REMOVE_USER, RESET_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, SET_DEFAULT_PASSWORD_RESET,
     SIGNUP_DEFAULT,
     SIGNUP_FAILURE,
     SIGNUP_REQUEST,
@@ -161,3 +161,17 @@ export const updateUserReducer = (state = {}, action) => {
     }
 }
 
+export const resetPasswordReducer = (state = {}, action) => {
+    switch (action.type) {
+        case RESET_PASSWORD_REQUEST:
+            return {loading: true}
+        case RESET_PASSWORD_SUCCESS:
+            return {loading: false, success: true}
+        case RESET_PASSWORD_FAILURE:
+            return {loading: false, error: action.payload}
+        case SET_DEFAULT_PASSWORD_RESET:
+            return {}
+        default:
+            return state
+    }
+}

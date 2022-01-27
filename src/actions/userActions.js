@@ -17,7 +17,7 @@ import {
     LOGIN_FAILURE,
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
-    LOGOUT, REMOVE_USER,
+    LOGOUT, REMOVE_USER, RESET_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS,
     SIGNUP_DEFAULT,
     SIGNUP_FAILURE,
     SIGNUP_REQUEST,
@@ -153,5 +153,17 @@ export const updateUser = (id, payload) => async (dispatch) => {
         dispatch({type: UPDATE_USER_SUCCESS, payload: response.data})
     } catch (err) {
         dispatch({type: UPDATE_USER_FAILURE, payload: new ErrorMessage(err)})
+    }
+}
+
+export const resetPassword = (payload) => async (dispatch) => {
+    try {
+        dispatch({type: RESET_PASSWORD_REQUEST})
+
+        await axios.post("http://localhost:8000/user/change-password", payload)
+
+        dispatch({type: RESET_PASSWORD_SUCCESS})
+    } catch (err) {
+        dispatch({type: RESET_PASSWORD_FAILURE, payload: new ErrorMessage(err)})
     }
 }
