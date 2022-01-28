@@ -60,7 +60,6 @@ const UserList = ({history}) => {
                             </div>
             }
         </Fragment>
-
     )
 }
 

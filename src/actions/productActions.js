@@ -11,7 +11,7 @@ import {
     FETCH_PRODUCT_SUCCESS,
     FETCH_PRODUCTS_FAILURE,
     FETCH_PRODUCTS_REQUEST,
-    FETCH_PRODUCTS_SUCCESS, REMOVE_PRODUCT,
+    FETCH_PRODUCTS_SUCCESS, QUERY_PRODUCTS_FAILURE, QUERY_PRODUCTS_REQUEST, QUERY_PRODUCTS_SUCCESS, REMOVE_PRODUCT,
     REMOVE_PRODUCT_FAILURE,
     REMOVE_PRODUCT_REQUEST,
     REMOVE_PRODUCT_SUCCESS
@@ -30,6 +30,19 @@ export const fetchProducts = () => async (dispatch) => {
     } catch (err) {
         const errorMessage = new ErrorMessage(err)
         dispatch({type: FETCH_PRODUCTS_FAILURE, payload: errorMessage})
+    }
+}
+
+export const queryProducts = (query, pageNumber) => async (dispatch) => {
+    try {
+        dispatch({type: QUERY_PRODUCTS_REQUEST})
+
+        const response = await axios.post("http://localhost:8000/product/query", {query: query, pageNumber: pageNumber})
+
+        dispatch({type: QUERY_PRODUCTS_SUCCESS, payload: response.data})
+
+    } catch (err) {
+        dispatch({type: QUERY_PRODUCTS_FAILURE, payload: new ErrorMessage(err)})
     }
 }
 

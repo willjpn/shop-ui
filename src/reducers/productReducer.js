@@ -13,7 +13,7 @@ import {
     FETCH_PRODUCT_SUCCESS,
     FETCH_PRODUCTS_FAILURE,
     FETCH_PRODUCTS_REQUEST,
-    FETCH_PRODUCTS_SUCCESS,
+    FETCH_PRODUCTS_SUCCESS, QUERY_PRODUCTS_FAILURE, QUERY_PRODUCTS_REQUEST, QUERY_PRODUCTS_SUCCESS,
     REMOVE_PRODUCT,
     REMOVE_PRODUCT_FAILURE,
     REMOVE_PRODUCT_REQUEST,
@@ -101,6 +101,20 @@ export const deleteProductReducer = (state = {}, action) => {
             return {loading: false, success: true}
         case REMOVE_PRODUCT_FAILURE:
             return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+
+export const queryProductsReducer = (state = {products: []}, action) => {
+    switch (action.type) {
+        case QUERY_PRODUCTS_REQUEST:
+            return {loading: true, products: []}
+        case QUERY_PRODUCTS_SUCCESS:
+            return {loading: false, products: action.payload.products, count: action.payload.count}
+        case QUERY_PRODUCTS_FAILURE:
+            return {loading: false, products: [], error: action.payload}
         default:
             return state
     }

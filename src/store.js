@@ -6,7 +6,7 @@ import {
     deleteProductReducer,
     editProductReducer,
     productReducer,
-    productsReducer
+    productsReducer, queryProductsReducer
 } from "./reducers/productReducer";
 import {authReducer} from "./reducers/authReducer";
 import {
@@ -20,6 +20,7 @@ import {
     usersReducer
 } from "./reducers/userReducer";
 import {basketReducer} from "./reducers/basketReducer";
+import {queryProducts} from "./actions/productActions";
 
 const reducer = combineReducers({
     basket: basketReducer,
@@ -39,6 +40,7 @@ const reducer = combineReducers({
     deleteUser: deleteUserReducer,
     resetPassword: resetPasswordReducer,
     addAddress: addAddressReducer,
+    queryProducts: queryProductsReducer
 })
 
 // TODO- we use cookies fyi / PAGINATION / AUTOCOMPLETE DELIVERY ADDRESS
