@@ -1,5 +1,6 @@
 import axios from "axios";
 import {refreshToken} from "../actions/authActions";
+import {REFRESH_FAILURE} from "../constants/authConstants";
 
 let store
 
@@ -8,6 +9,7 @@ export const injectStore = _store => {
 }
 
 let fetchingAccessToken = false;
+let alreadyRetriedRefresh = false
 
 let subscribers = [];
 
@@ -23,11 +25,14 @@ const refreshTokenAndRequest = (config) => {
 
     if (!fetchingAccessToken) {
         fetchingAccessToken = true;
-        return store.dispatch(refreshToken()).then(() => {
+        return axios.get("http://localhost:8000/admin/refreshToken").then(() => {
+            alreadyRetriedRefresh = true
             onAccessTokenFetched();
             fetchingAccessToken = false;
             return retryRequest;
         }).catch(error => {
+            console.log("error occurred when refreshing")
+            store.dispatch({type: REFRESH_FAILURE})
             subscribers = [];
             return Promise.reject(error);
         });
@@ -43,7 +48,10 @@ function onAccessTokenFetched() {
 }
 
 function addSubscriber(callback) {
-    subscribers.push(callback);
+    if (!alreadyRetriedRefresh) {
+        subscribers.push(callback)
+    }
+
 }
 
 axios.interceptors.request.use(function (config) {

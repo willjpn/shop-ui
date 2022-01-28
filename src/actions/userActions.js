@@ -1,5 +1,7 @@
 import axios from "axios";
 import {
+    ADD_ADDRESS_FAILURE,
+    ADD_ADDRESS_REQUEST, ADD_ADDRESS_SUCCESS,
     ADD_USER,
     ADD_USER_FAILURE, ADD_USER_REQUEST, ADD_USER_SUCCESS,
     DELETE_USER_FAILURE,
@@ -63,18 +65,27 @@ export const logout = () => async (dispatch) => {
 }
 
 export const getUser = () => async (dispatch) => {
-    try {
-        dispatch({type: GET_USER_REQUEST})
 
-        const response = await axios.get('http://localhost:8000/user/get-user')
+    dispatch({type: GET_USER_REQUEST})
 
-
+    axios.get('http://localhost:8000/user/get-user').then((response) => {
         dispatch({type: GET_USER_SUCCESS, payload: response.data})
+    }).catch(err => {
+        dispatch({type: GET_USER_FAILURE, payload: new ErrorMessage(err)})
+    })
 
-    } catch (err) {
-        const errorMessage = new ErrorMessage(err)
-        dispatch({type: GET_USER_FAILURE, payload: errorMessage})
-    }
+    // try {
+    //     dispatch({type: GET_USER_REQUEST})
+    //
+    //     const response = await axios.get('http://localhost:8000/user/get-user')
+    //         console.log("response.data on getUser", response.data)
+    //
+    //     dispatch({type: GET_USER_SUCCESS, payload: response.data})
+    //
+    // } catch (err) {
+    //     const errorMessage = new ErrorMessage(err)
+    //     dispatch({type: GET_USER_FAILURE, payload: errorMessage})
+    // }
 }
 
 export const createNewUser = (payload) => async (dispatch) => {
@@ -165,5 +176,18 @@ export const resetPassword = (payload) => async (dispatch) => {
         dispatch({type: RESET_PASSWORD_SUCCESS})
     } catch (err) {
         dispatch({type: RESET_PASSWORD_FAILURE, payload: new ErrorMessage(err)})
+    }
+}
+
+export const addAddress = (payload) => async (dispatch) => {
+    try {
+        dispatch({type: ADD_ADDRESS_REQUEST})
+
+        await axios.post("http://localhost:8000/user/shipping-address", payload)
+
+        dispatch({type: ADD_ADDRESS_SUCCESS})
+
+    } catch (err) {
+        dispatch({type: ADD_ADDRESS_FAILURE, payload: new ErrorMessage(err)})
     }
 }

@@ -5,7 +5,7 @@ import {login} from "../actions/userActions";
 import {useEffect} from "react";
 import {Link} from "react-router-dom";
 
-const Login = ({history}) => {
+const Login = ({history, location}) => {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -15,10 +15,11 @@ const Login = ({history}) => {
     const user = useSelector(state => state.user)
     const {loading, userInfo, error} = user
 
+    const redirect = location.search ? location.search.split("=")[1] : "/"
 
     useEffect(() => {
         if (userInfo._id) {
-            history.push("/")
+            history.push(redirect)
         }
     }, [userInfo, history])
 

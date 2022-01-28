@@ -1,4 +1,7 @@
 import {
+    ADD_ADDRESS_FAILURE,
+    ADD_ADDRESS_REQUEST,
+    ADD_ADDRESS_SUCCESS,
     ADD_USER,
     ADD_USER_FAILURE,
     ADD_USER_REQUEST,
@@ -20,12 +23,19 @@ import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
     LOGOUT,
-    REMOVE_USER, RESET_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, SET_DEFAULT_PASSWORD_RESET,
+    REMOVE_USER,
+    RESET_PASSWORD_FAILURE,
+    RESET_PASSWORD_REQUEST,
+    RESET_PASSWORD_SUCCESS,
+    SET_DEFAULT_ADDRESS_ADD,
+    SET_DEFAULT_PASSWORD_RESET,
     SIGNUP_DEFAULT,
     SIGNUP_FAILURE,
     SIGNUP_REQUEST,
-    SIGNUP_SUCCESS, UPDATE_USER_FAILURE,
-    UPDATE_USER_REQUEST, UPDATE_USER_RESET,
+    SIGNUP_SUCCESS,
+    UPDATE_USER_FAILURE,
+    UPDATE_USER_REQUEST,
+    UPDATE_USER_RESET,
     UPDATE_USER_SUCCESS
 } from "../constants/userConstants";
 
@@ -170,6 +180,21 @@ export const resetPasswordReducer = (state = {}, action) => {
         case RESET_PASSWORD_FAILURE:
             return {loading: false, error: action.payload}
         case SET_DEFAULT_PASSWORD_RESET:
+            return {}
+        default:
+            return state
+    }
+}
+
+export const addAddressReducer = (state = {}, action) => {
+    switch (action.type) {
+        case ADD_ADDRESS_REQUEST:
+            return {loading: true}
+        case ADD_ADDRESS_SUCCESS:
+            return {loading: false, success: true}
+        case ADD_ADDRESS_FAILURE:
+            return {loading: false, error: action.payload}
+        case SET_DEFAULT_ADDRESS_ADD:
             return {}
         default:
             return state

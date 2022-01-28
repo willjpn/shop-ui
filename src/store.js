@@ -10,6 +10,7 @@ import {
 } from "./reducers/productReducer";
 import {authReducer} from "./reducers/authReducer";
 import {
+    addAddressReducer,
     addUserReducer,
     deleteUserReducer,
     editUserReducer, resetPasswordReducer,
@@ -37,8 +38,12 @@ const reducer = combineReducers({
     updateUser: updateUserReducer,
     deleteUser: deleteUserReducer,
     resetPassword: resetPasswordReducer,
+    addAddress: addAddressReducer,
 })
 
+// TODO- we use cookies fyi / PAGINATION / AUTOCOMPLETE DELIVERY ADDRESS
+
+//
 const localStorageBasket = localStorage.getItem("basket") ? JSON.parse(localStorage.getItem("basket")) : []
 
 

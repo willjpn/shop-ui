@@ -16,6 +16,14 @@ const UserList = ({history}) => {
 
     const dispatch = useDispatch()
 
+    const {refreshFailed} = useSelector(state => state.auth)
+
+    useEffect(() => {
+        if (refreshFailed) {
+            history.push(`/login?redirect=user-list`)
+        }
+    }, [refreshFailed])
+
     useEffect(() => {
         // check if user has admin rights
         dispatch(getUser())

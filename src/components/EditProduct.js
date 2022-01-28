@@ -12,6 +12,7 @@ const EditProduct = ({match, history}) => {
     const userDetails = useSelector(state => state.userDetails)
     const productDetails = useSelector(state => state.product)
     const editProductDetails = useSelector(state => state.editProduct)
+    const {refreshFailed} = useSelector(state => state.auth)
 
     const {loading: userLoading, error: userError, userInfo} = userDetails
     const {loading: productLoading, error: productError, product} = productDetails
@@ -43,6 +44,12 @@ const EditProduct = ({match, history}) => {
             setPrice(product.price)
         }
     }, [product])
+
+    useEffect(() => {
+        if (refreshFailed) {
+            history.push(`/login?redirect=product/edit/${id}`)
+        }
+    }, [refreshFailed])
 
     const goBack = () => {
         history.push("/product-list")

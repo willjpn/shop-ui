@@ -34,6 +34,13 @@ const ProductList = ({history}) => {
         history.push("/product/new")
     }
 
+    const {refreshFailed} = useSelector(state => state.auth)
+
+    useEffect(() => {
+        if (refreshFailed) {
+            history.push(`/login?redirect=product-list`)
+        }
+    }, [refreshFailed])
     return (
         <Fragment>
             <Header/>

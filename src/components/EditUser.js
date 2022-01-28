@@ -55,6 +55,14 @@ const EditUser = ({match, history}) => {
         dispatch(updateUser(id, payload))
     }
 
+    const {refreshFailed} = useSelector(state => state.auth)
+
+    useEffect(() => {
+        if (refreshFailed) {
+            history.push(`/login?redirect=user/edit/${id}`)
+        }
+    }, [refreshFailed])
+
     useEffect(() => {
         if (success) {
             history.push('/user-list')

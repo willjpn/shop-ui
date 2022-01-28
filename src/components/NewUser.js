@@ -32,6 +32,13 @@ const NewProduct = ({history}) => {
         })
     }
 
+    const {refreshFailed} = useSelector(state => state.auth)
+
+    useEffect(() => {
+        if (refreshFailed) {
+            history.push(`/login?redirect=user/new`)
+        }
+    }, [refreshFailed])
 
     // first thing to do is check for admin access
 
@@ -105,7 +112,6 @@ const NewProduct = ({history}) => {
                                     </div>
                                 </form>
                             </div>
-
             }
         </Fragment>
     )
