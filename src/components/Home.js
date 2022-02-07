@@ -8,6 +8,10 @@ import {queryProducts} from "../actions/productActions";
 
 const Home = () => {
 
+    // TODO - add page button at bottom of page to find products
+
+    // TODO - add carousel to see products on home page
+
     const dispatch = useDispatch()
 
     const [query, setQuery] = useState('')

@@ -28,6 +28,8 @@ import {
 import {SET_ACCESS_TOKEN} from "../constants/authConstants";
 import {ErrorMessage} from "../utils/errorHandler";
 
+
+// TODO: update payload; errorMessage to errorMessage.message and add these error messages to html
 export const login = (email, password) => async (dispatch) => {
     try {
         dispatch({type: LOGIN_REQUEST})

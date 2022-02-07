@@ -1,8 +1,7 @@
-import {ADD_TO_BASKET, REMOVE_FROM_BASKET} from "../constants/basketConstants";
+import {ADD_TO_BASKET, EMPTY_BASKET, REMOVE_FROM_BASKET} from "../constants/basketConstants";
 
 const initialState = {
     basket: [],
-    anotherVariable: {}
 }
 
 
@@ -28,6 +27,8 @@ export const basketReducer = (state = initialState, action) => {
             // filter out the item to be removed and return filtered array as basket in redux state
             const filteredBasket = state.basket.filter(item => item.product._id !== action.payload)
             return {...state, basket: filteredBasket}
+        case EMPTY_BASKET:
+            return {basket: []}
         default:
             return state
     }

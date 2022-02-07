@@ -1,7 +1,7 @@
 import {
     ADD_ADDRESS_FAILURE,
     ADD_ADDRESS_REQUEST,
-    ADD_ADDRESS_SUCCESS,
+    ADD_ADDRESS_SUCCESS, ADD_CHECKOUT_ADDRESS,
     ADD_USER,
     ADD_USER_FAILURE,
     ADD_USER_REQUEST,
@@ -196,6 +196,15 @@ export const addAddressReducer = (state = {}, action) => {
             return {loading: false, error: action.payload}
         case SET_DEFAULT_ADDRESS_ADD:
             return {}
+        default:
+            return state
+    }
+}
+
+export const addCheckoutAddressReducer = (state = {}, action) => {
+    switch (action.type) {
+        case ADD_CHECKOUT_ADDRESS:
+            return {address: action.payload}
         default:
             return state
     }

@@ -34,6 +34,9 @@ const Header = () => {
                         <button>
                             <Link to="/user-list">See Users</Link>
                         </button>
+                        <button>
+                            <Link to="/order-list">See Orders</Link>
+                        </button>
                     </Fragment>
                     }
                 </Fragment>
@@ -42,6 +45,9 @@ const Header = () => {
                     <Link to="/login">Login</Link>
                 </button>
             }
+            <button>
+                <Link to="/basket">Basket</Link>
+            </button>
 
         </Fragment>
     )
