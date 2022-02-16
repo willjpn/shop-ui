@@ -4,6 +4,7 @@ import {getUser} from "../actions/userActions";
 import Header from "./Header";
 import {createOrder} from "../actions/orderActions";
 import {emptyBasket} from "../actions/basketActions";
+import {RESET_CREATE_ORDER_STATE} from "../constants/orderConstants";
 
 // TODO - remove devtools extension and check package.json
 
@@ -39,6 +40,7 @@ const CheckoutConfirm = ({history}) => {
     // this is to check if an address was submitted in previous step. If not, go back to shipping step
     useEffect(() => {
         if (!address) {
+            console.log("no address")
             history.push("/checkout/shipping")
         } else {
             console.log("address provided", address)
@@ -50,6 +52,7 @@ const CheckoutConfirm = ({history}) => {
             // if an order has been successfully placed, we should clear the basket
             dispatch(emptyBasket())
             history.push(`/orders/${order._id}`)
+            dispatch({type: RESET_CREATE_ORDER_STATE})
         }
     }, [success])
 

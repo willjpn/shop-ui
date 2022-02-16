@@ -1,79 +1,73 @@
-import Header from "./Header";
-import {Fragment, useState} from "react";
+import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import Products from "./Products";
-import Basket from "./Basket";
 import {queryProducts} from "../actions/productActions";
-import {Button, Container, Grid} from "@mui/material";
+import {Grid, useMediaQuery} from "@mui/material";
+import {useTheme} from "@mui/material";
+import '../assets/Home.css'
+import Header from "./Header";
+import HomeSearch from "./HomeSearch";
+import HomeProducts from "./HomeProducts";
+import HomeBasket from "./HomeBasket";
 
-const Home = () => {
+const Home = ({history}) => {
 
-    // TODO - add page button at bottom of page to find products
-
-    // TODO - add carousel to see products on home page
+    // TODO - pagination at bottom of page to find products
 
     const dispatch = useDispatch()
 
     const [query, setQuery] = useState('')
-    const [pageNumber, setPageNumber] = useState(1)
 
     const queryProductsState = useSelector(state => state.queryProducts)
-    const {loading, error, products, count} = queryProductsState
+    const {products, count, totalCount} = queryProductsState
+
+    const basketState = useSelector(state => state.basket)
+    const {basket} = basketState
 
     useEffect(() => {
         dispatch(queryProducts(query))
     }, [dispatch, query])
 
-    return (
+    const theme = useTheme();
+    const showBasket = useMediaQuery(theme.breakpoints.up('lg'));
+    const showImage = useMediaQuery(theme.breakpoints.up('md'))
+    const showPrice = useMediaQuery(theme.breakpoints.up('md'))
 
+    return (
         <Grid container sx={{
-            alignItems: 'flex-start'
+            alignItems: 'flex-start',
         }}>
-            <Grid xs={10}>
-                <Grid>
-                    <Grid container
-                          sx={{height: '10vh', backgroundColor: 'lightsteelblue'}}>
-                        <Grid item xs={4} sx={{border: 1, borderWidth: 'thin'}}>EMPTY</Grid>
-                        <Grid item xs={4} sx={{
-                            border: 1,
-                            borderWidth: 'thin',
-                            justifyContent: 'center',
-                            display: 'flex',
-                            alignItems: 'center'
-                        }}>LOGO</Grid>
-                        <Grid item xs={4} sx={{
-                            border: 1,
-                            borderWidth: 'thin',
-                            justifyContent: 'center',
-                            display: 'flex',
-                            alignItems: 'center'
-                        }}>
-                            <Button>Admin</Button>
-                            <Button>Account</Button>
-                            <Button>Logout</Button>
-                        </Grid>
-                    </Grid>
-                    <Grid sx={{border: 1, borderWidth: 'thin', height: '25vh', backgroundColor: 'lightblue'}}>
-                        Search
-                    </Grid>
-                    <Grid sx={{border: 1, borderWidth: 'thin', height: '65vh', backgroundColor: 'lightpink'}}>
-                        Body
-                    </Grid>
+            <Grid item xs={12} lg={9} sx={{overflowY: 'auto'}}>
+                <Grid container
+                      sx={{
+                          height: '20vh',
+                      }}>
+                    <Header/>
+                </Grid>
+                <Grid sx={{
+                    height: '15vh', display: 'flex', justifyContent: 'center',
+                }}>
+                    <HomeSearch query={query} count={count} totalCount={totalCount} setQuery={setQuery}
+                                dispatch={dispatch}/>
+                </Grid>
+                <Grid sx={{
+                    height: '65vh',
+                }}>
+                    <HomeProducts products={products} query={query} showImage={showImage} showPrice={showPrice}
+                                  dispatch={dispatch} history={history}/>
                 </Grid>
             </Grid>
-            <Grid xs={2} sx={{border: 1, borderWidth: 'thin', height: '100vh', backgroundColor: 'lightgreen'}}>
-                Basket
-            </Grid>
+            {showBasket && <Grid item lg={3}
+                                 sx={{
+                                     borderLeft: 1, borderWidth: 'thick',
+                                     borderColor: 'lightgrey',
+                                     height: '100vh',
+                                     display: 'flex',
+                                     flexDirection: 'column'
+                                 }}>
+                <HomeBasket basket={basket} history={history} dispatch={dispatch}/>
+            </Grid>}
         </Grid>
-
-        // {/*<Header/>*/}
-        // {/*<Basket/>*/}
-        // {/*<h2>Home Page</h2>*/}
-        // {/*<input placeholder="Search" value={query} onChange={e => setQuery(e.target.value)}/>*/}
-        // {/*{loading ? <h2>Loading products...</h2> : error ? <h2>An error has occurred: {error}</h2> :*/}
-        // {/*    <Products products={products} count={count}/>*/}
-        // {/*}*/}
     )
 }
 

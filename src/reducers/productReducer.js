@@ -112,7 +112,7 @@ export const queryProductsReducer = (state = {products: []}, action) => {
         case QUERY_PRODUCTS_REQUEST:
             return {loading: true, products: []}
         case QUERY_PRODUCTS_SUCCESS:
-            return {loading: false, products: action.payload.products, count: action.payload.count}
+            return {loading: false, products: action.payload.products, count: action.payload.count, totalCount: action.payload.totalCount}
         case QUERY_PRODUCTS_FAILURE:
             return {loading: false, products: [], error: action.payload}
         default:

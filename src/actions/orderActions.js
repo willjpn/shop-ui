@@ -21,7 +21,7 @@ export const createOrder = (payload) => async (dispatch) => {
 
         dispatch({type: CREATE_ORDER_SUCCESS, payload: response.data})
     } catch (err) {
-        dispatch({type: CREATE_ORDER_FAILURE, payload: new ErrorMessage(err)})
+        dispatch({type: CREATE_ORDER_FAILURE, payload: new ErrorMessage(err).message})
     }
 }
 

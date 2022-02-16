@@ -9,10 +9,10 @@ import {
     ADD_USER_SUCCESS,
     DELETE_USER_FAILURE,
     DELETE_USER_REQUEST,
-    DELETE_USER_SUCCESS,
+    DELETE_USER_SUCCESS, EDIT_USER_DETAILS_FAILURE, EDIT_USER_DETAILS_REQUEST, EDIT_USER_DETAILS_SUCCESS,
     FETCH_EDIT_USER_FAILURE,
     FETCH_EDIT_USER_REQUEST,
-    FETCH_EDIT_USER_SUCCESS,
+    FETCH_EDIT_USER_SUCCESS, FETCH_USER_ORDERS_FAILURE, FETCH_USER_ORDERS_REQUEST, FETCH_USER_ORDERS_SUCCESS,
     GET_USER_FAILURE,
     GET_USER_REQUEST,
     GET_USER_SUCCESS,
@@ -205,6 +205,32 @@ export const addCheckoutAddressReducer = (state = {}, action) => {
     switch (action.type) {
         case ADD_CHECKOUT_ADDRESS:
             return {address: action.payload}
+        default:
+            return state
+    }
+}
+
+export const editUserDetailsReducer = (state = {}, action) => {
+    switch (action.type) {
+        case EDIT_USER_DETAILS_REQUEST:
+            return {loading: true}
+        case EDIT_USER_DETAILS_SUCCESS:
+            return {loading: false, success: true}
+        case EDIT_USER_DETAILS_FAILURE:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+export const userOrdersReducer = (state = {orders: []}, action) => {
+    switch (action.type) {
+        case FETCH_USER_ORDERS_REQUEST:
+            return {loading: true, orders: []}
+        case FETCH_USER_ORDERS_SUCCESS:
+            return {loading: false, orders: action.payload}
+        case FETCH_USER_ORDERS_FAILURE:
+            return {loading: false, orders: [], error: action.payload}
         default:
             return state
     }

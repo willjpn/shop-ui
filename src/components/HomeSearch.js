@@ -1,0 +1,23 @@
+import {Container, Grid, TextField} from "@mui/material";
+
+const HomeSearch = ({query, count, setQuery, totalCount}) => {
+    return (
+        <Container sx={{marginTop: 3}}>
+            <TextField label="Search" variant="filled" value={query} size='large'
+                       onChange={e => setQuery(e.target.value)} fullWidth/>
+            <Grid sx={styles.productCountInfo}>Displaying {count} Of {totalCount} Items</Grid>
+        </Container>
+    )
+}
+
+const styles = {
+    productCountInfo: {
+        justifyContent: 'center',
+        textAlign: 'center',
+        paddingY: 2,
+        fontSize: '18',
+        letterSpacing: '1px',
+    }
+}
+
+export default HomeSearch

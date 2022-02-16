@@ -12,10 +12,10 @@ import {authReducer} from "./reducers/authReducer";
 import {
     addAddressReducer, addCheckoutAddressReducer,
     addUserReducer,
-    deleteUserReducer,
+    deleteUserReducer, editUserDetailsReducer,
     editUserReducer, resetPasswordReducer,
     signupReducer, updateUserReducer,
-    userDetailsReducer,
+    userDetailsReducer, userOrdersReducer,
     userReducer,
     usersReducer
 } from "./reducers/userReducer";
@@ -53,7 +53,9 @@ const reducer = combineReducers({
     getOrder: getOrderReducer,
     payOrder: payOrderReducer,
     orders: ordersReducer,
-    removeOrder: removeOrderReducer
+    removeOrder: removeOrderReducer,
+    editUserDetails: editUserDetailsReducer,
+    userOrders: userOrdersReducer
 })
 
 // TODO- we use cookies fyi / PAGINATION / AUTOCOMPLETE DELIVERY ADDRESS

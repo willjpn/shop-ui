@@ -2,14 +2,16 @@ import React, {Fragment, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {resetPassword} from "../actions/userActions";
 import {SET_DEFAULT_PASSWORD_RESET} from "../constants/userConstants";
+import {Button, TextField} from "@mui/material";
+import {Save} from "@mui/icons-material";
 
 const ResetPassword = () => {
 
     const dispatch = useDispatch()
 
-    const [originalPassword, setOriginalPassword] = useState()
-    const [newPassword, setNewPassword] = useState()
-    const [repeatPassword, setRepeatPassword] = useState()
+    const [originalPassword, setOriginalPassword] = useState('')
+    const [newPassword, setNewPassword] = useState('')
+    const [repeatPassword, setRepeatPassword] = useState('')
     const [passwordReset, setPasswordReset] = useState(false)
 
     const resetPasswordState = useSelector(state => state.resetPassword)
@@ -30,32 +32,31 @@ const ResetPassword = () => {
         }
     }, [success, dispatch])
 
+    // TODO - if error don't hide form, simply show error and still show form
+
     return (
         <Fragment>
-            <h2>Reset Password</h2>
-            {loading ? <h2>Resetting password</h2> : error ? <h2>{error}</h2> :
+            {loading ? <span style={{fontSize: '20px', color: 'green', letterSpacing: '1px', marginTop: 10, textAlign: 'center'}}>Resetting your password!</span> :
                 <Fragment>
-                    <form>
-                        <div>
-                            <label htmlFor="originalPassword">Original Password:</label>
-                            <input type="password" id="originalPassword" name="originalPassword"
-                                   onChange={(e) => setOriginalPassword(e.target.value)}/>
-                        </div>
-                        <div>
-                            <label htmlFor="newPassword">New Password:</label>
-                            <input type="password" id="newPassword" name="newPassword"
-                                   onChange={(e) => setNewPassword(e.target.value)}/>
-                        </div>
-                        <div>
-                            <label htmlFor="repeatPassword">Repeat New Password:</label>
-                            <input type="password" id="repeatPassword" name="repeatPassword"
-                                   onChange={(e) => setRepeatPassword(e.target.value)}/>
-                        </div>
-                        <div>
-                            <button onClick={e => submit(e)}>Reset Password</button>
-                        </div>
-                    </form>
-                    {passwordReset && <h3>You have successfully reset your password</h3>}
+                    <TextField type="password" label="Current Password" value={originalPassword} name="originalPassword"
+                               onChange={(e) => setOriginalPassword(e.target.value)}
+                               sx={{width: '90%', marginY: '10px'}}/>
+
+                    <TextField type="password" label="New Password" value={newPassword} name="newPassword"
+                               onChange={(e) => setNewPassword(e.target.value)} sx={{width: '90%', marginY: '10px'}}/>
+                    <TextField type="password" label="Repeat New Password" value={repeatPassword} name="repeatPassword"
+                               onChange={(e) => setRepeatPassword(e.target.value)}
+                               sx={{width: '90%', marginY: '10px'}}/>
+                    <Button variant='contained' color="success" size="small"
+                            sx={{ marginY: '15px', paddingY: '5px'}}
+                            startIcon={<Save/>} onClick={(e) => submit(e)}
+                    >
+                        Reset Password
+                    </Button>
+                    {passwordReset &&
+                    <span style={{fontSize: '20px', color: 'green', letterSpacing: '1px', marginTop: 10, textAlign: 'center'}}>Your password has been reset!</span>}
+                    {error &&
+                    <span style={{fontSize: '20px', color: 'red', letterSpacing: '1px', marginTop: 10, textAlign: 'center'}}>{error}</span>}
                 </Fragment>
 
 
