@@ -1,15 +1,27 @@
 import axios from "axios";
 import {
     ADD_ADDRESS_FAILURE,
-    ADD_ADDRESS_REQUEST, ADD_ADDRESS_SUCCESS,
+    ADD_ADDRESS_REQUEST,
+    ADD_ADDRESS_SUCCESS,
+    ADD_CHECKOUT_ADDRESS,
+    ADD_CHECKOUT_ADDRESS_FAILURE,
+    ADD_CHECKOUT_ADDRESS_REQUEST, ADD_CHECKOUT_ADDRESS_SUCCESS,
     ADD_USER,
-    ADD_USER_FAILURE, ADD_USER_REQUEST, ADD_USER_SUCCESS,
+    ADD_USER_FAILURE,
+    ADD_USER_REQUEST,
+    ADD_USER_SUCCESS,
     DELETE_USER_FAILURE,
     DELETE_USER_REQUEST,
     DELETE_USER_SUCCESS,
+    EDIT_USER_DETAILS_FAILURE,
+    EDIT_USER_DETAILS_REQUEST,
+    EDIT_USER_DETAILS_SUCCESS,
     FETCH_EDIT_USER_FAILURE,
     FETCH_EDIT_USER_REQUEST,
     FETCH_EDIT_USER_SUCCESS,
+    FETCH_USER_ORDERS_FAILURE,
+    FETCH_USER_ORDERS_REQUEST,
+    FETCH_USER_ORDERS_SUCCESS,
     GET_USER_FAILURE,
     GET_USER_REQUEST,
     GET_USER_SUCCESS,
@@ -19,11 +31,18 @@ import {
     LOGIN_FAILURE,
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
-    LOGOUT, REMOVE_USER, RESET_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS,
+    LOGOUT,
+    REMOVE_USER,
+    RESET_PASSWORD_FAILURE,
+    RESET_PASSWORD_REQUEST,
+    RESET_PASSWORD_SUCCESS,
     SIGNUP_DEFAULT,
     SIGNUP_FAILURE,
     SIGNUP_REQUEST,
-    SIGNUP_SUCCESS, UPDATE_USER_FAILURE, UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS
+    SIGNUP_SUCCESS,
+    UPDATE_USER_FAILURE,
+    UPDATE_USER_REQUEST,
+    UPDATE_USER_SUCCESS
 } from "../constants/userConstants";
 import {SET_ACCESS_TOKEN} from "../constants/authConstants";
 import {ErrorMessage} from "../utils/errorHandler";
@@ -41,7 +60,7 @@ export const login = (email, password) => async (dispatch) => {
 
         dispatch({type: SET_ACCESS_TOKEN, payload: accessToken})
     } catch (err) {
-        const errorMessage = new ErrorMessage(err)
+        const errorMessage = new ErrorMessage(err).message
         dispatch({type: LOGIN_FAILURE, payload: errorMessage})
     }
 }
@@ -73,7 +92,7 @@ export const getUser = () => async (dispatch) => {
     axios.get('http://localhost:8000/user/get-user').then((response) => {
         dispatch({type: GET_USER_SUCCESS, payload: response.data})
     }).catch(err => {
-        dispatch({type: GET_USER_FAILURE, payload: new ErrorMessage(err)})
+        dispatch({type: GET_USER_FAILURE, payload: new ErrorMessage(err).message})
     })
 
     // try {
@@ -99,7 +118,7 @@ export const createNewUser = (payload) => async (dispatch) => {
 
         dispatch({type: SIGNUP_SUCCESS})
     } catch (err) {
-        const errorMessage = new ErrorMessage(err)
+        const errorMessage = new ErrorMessage(err).message
         dispatch({type: SIGNUP_FAILURE, payload: errorMessage})
     }
 }
@@ -112,7 +131,7 @@ export const getUsers = () => async (dispatch) => {
         dispatch({type: GET_USERS_SUCCESS, payload: response.data})
 
     } catch (err) {
-        const errorMessage = new ErrorMessage(err)
+        const errorMessage = new ErrorMessage(err).message
         dispatch({type: GET_USERS_FAILURE, payload: errorMessage})
     }
 }
@@ -126,7 +145,7 @@ export const deleteUser = (id) => async (dispatch) => {
         dispatch({type: REMOVE_USER, payload: id})
         dispatch({type: DELETE_USER_SUCCESS})
     } catch (err) {
-        dispatch({type: DELETE_USER_FAILURE, payload: new ErrorMessage(err)})
+        dispatch({type: DELETE_USER_FAILURE, payload: new ErrorMessage(err).message})
     }
 }
 
@@ -138,7 +157,7 @@ export const fetchEditUser = (id) => async (dispatch) => {
 
         dispatch({type: FETCH_EDIT_USER_SUCCESS, payload: response.data})
     } catch (err) {
-        dispatch({type: FETCH_EDIT_USER_FAILURE, payload: new ErrorMessage(err)})
+        dispatch({type: FETCH_EDIT_USER_FAILURE, payload: new ErrorMessage(err).message})
     }
 }
 
@@ -153,7 +172,7 @@ export const createUser = (payload) => async (dispatch) => {
         dispatch({type: ADD_USER_SUCCESS})
 
     } catch (err) {
-        dispatch({type: ADD_USER_FAILURE, payload: new ErrorMessage(err)})
+        dispatch({type: ADD_USER_FAILURE, payload: new ErrorMessage(err).message})
     }
 }
 
@@ -165,7 +184,7 @@ export const updateUser = (id, payload) => async (dispatch) => {
 
         dispatch({type: UPDATE_USER_SUCCESS, payload: response.data})
     } catch (err) {
-        dispatch({type: UPDATE_USER_FAILURE, payload: new ErrorMessage(err)})
+        dispatch({type: UPDATE_USER_FAILURE, payload: new ErrorMessage(err).message})
     }
 }
 
@@ -177,7 +196,7 @@ export const resetPassword = (payload) => async (dispatch) => {
 
         dispatch({type: RESET_PASSWORD_SUCCESS})
     } catch (err) {
-        dispatch({type: RESET_PASSWORD_FAILURE, payload: new ErrorMessage(err)})
+        dispatch({type: RESET_PASSWORD_FAILURE, payload: new ErrorMessage(err).message})
     }
 }
 
@@ -190,6 +209,48 @@ export const addAddress = (payload) => async (dispatch) => {
         dispatch({type: ADD_ADDRESS_SUCCESS})
 
     } catch (err) {
-        dispatch({type: ADD_ADDRESS_FAILURE, payload: new ErrorMessage(err)})
+        dispatch({type: ADD_ADDRESS_FAILURE, payload: new ErrorMessage(err).message})
+    }
+}
+
+export const editUserDetails = (payload) => async (dispatch) => {
+    try {
+        dispatch({type: EDIT_USER_DETAILS_REQUEST})
+
+        const response = await axios.post("http://localhost:8000/user/details", payload)
+        console.log("response.data", response.data)
+
+        dispatch({type: EDIT_USER_DETAILS_SUCCESS})
+
+    } catch (err) {
+        dispatch({type: EDIT_USER_DETAILS_FAILURE, payload: new ErrorMessage(err).message})
+    }
+}
+
+export const fetchUserOrders = () => async (dispatch) => {
+    try {
+        dispatch({type: FETCH_USER_ORDERS_REQUEST})
+
+        const response = await axios.get("http://localhost:8000/order/user-orders")
+
+        console.log("response.data", response.data)
+
+        dispatch({type: FETCH_USER_ORDERS_SUCCESS, payload: response.data})
+    } catch (err) {
+        dispatch({type: FETCH_USER_ORDERS_FAILURE, payload: new ErrorMessage(err).message})
+    }
+}
+
+export const addTemporaryAddress = (payload) => async (dispatch) => {
+    try {
+        dispatch({type: ADD_CHECKOUT_ADDRESS_REQUEST})
+
+        const response = await axios.post("http://localhost:8000/user/checkout-address", payload)
+
+        console.log("response.data", response.data)
+
+        dispatch({type: ADD_CHECKOUT_ADDRESS_SUCCESS, payload: payload})
+    } catch (err) {
+        dispatch({type: ADD_CHECKOUT_ADDRESS_FAILURE, payload: new ErrorMessage(err).message})
     }
 }

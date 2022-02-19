@@ -6,6 +6,7 @@ import {BrowserRouter} from 'react-router-dom'
 import {Provider} from "react-redux"
 import store from "./store";
 import {injectStore} from "./common/axios";
+import './assets/fonts/Oswald-Regular.ttf'
 
 injectStore(store)
 

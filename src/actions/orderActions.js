@@ -4,9 +4,18 @@ import {
     CREATE_ORDER_SUCCESS,
     GET_ORDER_FAILURE,
     GET_ORDER_REQUEST,
-    GET_ORDER_SUCCESS, GET_ORDERS_FAILURE, GET_ORDERS_REQUEST, GET_ORDERS_SUCCESS, PAY_ORDER_FAILURE,
+    GET_ORDER_SUCCESS,
+    GET_ORDERS_FAILURE,
+    GET_ORDERS_REQUEST,
+    GET_ORDERS_SUCCESS,
+    PAY_ORDER_FAILURE,
     PAY_ORDER_REQUEST,
-    PAY_ORDER_SUCCESS, REMOVE_ORDER, REMOVE_ORDER_FAILURE, REMOVE_ORDER_REQUEST, REMOVE_ORDER_SUCCESS,
+    PAY_ORDER_SUCCESS,
+    REMOVE_ORDER,
+    REMOVE_ORDER_FAILURE,
+    REMOVE_ORDER_REQUEST,
+    REMOVE_ORDER_SUCCESS,
+    SET_ORDER_PAID_STATE,
 } from "../constants/orderConstants";
 import {ErrorMessage} from "../utils/errorHandler";
 import axios from "axios";
@@ -21,7 +30,7 @@ export const createOrder = (payload) => async (dispatch) => {
 
         dispatch({type: CREATE_ORDER_SUCCESS, payload: response.data})
     } catch (err) {
-        dispatch({type: CREATE_ORDER_FAILURE, payload: new ErrorMessage(err)})
+        dispatch({type: CREATE_ORDER_FAILURE, payload: new ErrorMessage(err).message})
     }
 }
 
@@ -48,6 +57,7 @@ export const payOrder = (id) => async (dispatch) => {
         await axios.post(`http://localhost:8000/order/${id}/pay`)
 
         dispatch({type: PAY_ORDER_SUCCESS})
+        dispatch({type: SET_ORDER_PAID_STATE, id})
     } catch (err) {
         dispatch({type: PAY_ORDER_FAILURE, payload: new ErrorMessage(err).message})
     }

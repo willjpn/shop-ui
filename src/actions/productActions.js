@@ -28,7 +28,7 @@ export const fetchProducts = () => async (dispatch) => {
         dispatch({type: FETCH_PRODUCTS_SUCCESS, payload: response.data})
 
     } catch (err) {
-        const errorMessage = new ErrorMessage(err)
+        const errorMessage = new ErrorMessage(err).message
         dispatch({type: FETCH_PRODUCTS_FAILURE, payload: errorMessage})
     }
 }
@@ -42,7 +42,7 @@ export const queryProducts = (query, pageNumber) => async (dispatch) => {
         dispatch({type: QUERY_PRODUCTS_SUCCESS, payload: response.data})
 
     } catch (err) {
-        dispatch({type: QUERY_PRODUCTS_FAILURE, payload: new ErrorMessage(err)})
+        dispatch({type: QUERY_PRODUCTS_FAILURE, payload: new ErrorMessage(err).message})
     }
 }
 
@@ -55,7 +55,7 @@ export const fetchProduct = (id) => async (dispatch) => {
             payload: response.data
         })
     } catch (err) {
-        const errorMessage = new ErrorMessage(err)
+        const errorMessage = new ErrorMessage(err).message
         dispatch({type: FETCH_PRODUCT_FAILURE, payload: errorMessage})
     }
 }
@@ -67,7 +67,7 @@ export const deleteProduct = (id) => async (dispatch) => {
         dispatch({type: REMOVE_PRODUCT, payload: id})
         dispatch({type: REMOVE_PRODUCT_SUCCESS})
     } catch (err) {
-        const errorMessage = new ErrorMessage(err)
+        const errorMessage = new ErrorMessage(err).message
         dispatch({
             type: REMOVE_PRODUCT_FAILURE,
             payload: errorMessage
@@ -75,7 +75,7 @@ export const deleteProduct = (id) => async (dispatch) => {
     }
 }
 
-export const addProduct = ({name, price, file}) => async (dispatch) => {
+export const addProduct = ({name, price, file, stockCount, productCode, description}) => async (dispatch) => {
     try {
         dispatch({type: ADD_PRODUCT_REQUEST})
 
@@ -83,6 +83,9 @@ export const addProduct = ({name, price, file}) => async (dispatch) => {
         formData.append("name", name)
         formData.append("price", price)
         formData.append("image", file)
+        formData.append("stockCount", stockCount)
+        formData.append("productCode", productCode)
+        formData.append("description", description)
 
         const response = await axios.post("http://localhost:8000/product", formData, {
             headers: {
@@ -97,7 +100,7 @@ export const addProduct = ({name, price, file}) => async (dispatch) => {
 
 
     } catch (err) {
-        const errorMessage = new ErrorMessage(err)
+        const errorMessage = new ErrorMessage(err).message
         dispatch({
             type: ADD_PRODUCT_FAILURE,
             payload: errorMessage
@@ -113,7 +116,7 @@ export const editProduct = (id, payload) => async (dispatch) => {
 
         dispatch({type: EDIT_PRODUCT_SUCCESS})
     } catch (err) {
-        const errorMessage = new ErrorMessage(err)
+        const errorMessage = new ErrorMessage(err).message
 
         dispatch({type: EDIT_PRODUCT_FAILURE, payload: errorMessage})
     }

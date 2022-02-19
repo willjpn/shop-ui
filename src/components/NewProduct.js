@@ -19,10 +19,14 @@ const NewProduct = ({history}) => {
     const [payload, setPayload] = useState({
         name: null,
         price: null,
-        image: null
+        image: null,
+        stockCount: 0,
+        productCode: null,
+        description: null
     })
 
     const [file, setFile] = useState()
+
 
 
     const editPayload = (e) => {
@@ -64,7 +68,7 @@ const NewProduct = ({history}) => {
 
     const submitProduct = (e) => {
         e.preventDefault()
-        dispatch(addProduct({name: payload.name, price: payload.price, file}))
+        dispatch(addProduct({name: payload.name, price: payload.price, productCode: payload.productCode, stockCount: payload.stockCount, description: payload.description, file}))
         history.push("/product-list")
     }
 
@@ -94,10 +98,26 @@ const NewProduct = ({history}) => {
                                                onChange={(e) => editPayload(e)}/>
                                     </div>
                                     <div>
+                                        <label htmlFor="productCode">Product Code:</label>
+                                        <input type="text" id="productCode" name="productCode"
+                                               onChange={(e) => editPayload(e)}/>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="stockCount">Stock Count:</label>
+                                        <input type="number" id="stockCount" name="stockCount"
+                                               onChange={(e) => editPayload(e)}/>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="description">Description:</label>
+                                        <input type="text" id="description" name="description"
+                                               onChange={(e) => editPayload(e)}/>
+                                    </div>
+                                    <div>
                                         <label htmlFor="image">Image:</label>
                                         <input type="file" id="image" name="image"
                                                onChange={(e) => setFile(e.target.files[0])}/>
                                     </div>
+
                                     <div>
                                         <button onClick={(e) => submitProduct(e)}>
                                             Submit
