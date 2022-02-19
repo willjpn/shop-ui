@@ -11,7 +11,8 @@ const HomeProducts = ({products, query, showPrice, showImage, dispatch, history}
             product: {
                 name: product.name,
                 _id: product._id,
-                price: product.price
+                price: product.price,
+                image: product.image
             }
         }
         dispatch(addToBasket(item, true))

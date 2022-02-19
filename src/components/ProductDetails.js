@@ -28,7 +28,8 @@ const ProductDetails = ({match, history}) => {
             product: {
                 name: product.name,
                 _id: product._id,
-                price: product.price
+                price: product.price,
+                image: product.image
             }
         }
         dispatch(addToBasket(item))
@@ -53,7 +54,7 @@ const ProductDetails = ({match, history}) => {
 
                 <Grid container sx={{height: '25vh'}}>
                     <Header/>
-                    <Container sx={{display: 'flex', alignItems: 'center', marginX: '25px', marginBottom: '20px'}}>
+                    <Container sx={{display: 'flex', alignItems: 'center', marginX: '25px', paddingY: '20px'}}>
                         <Button variant='text' size="large" startIcon={<ArrowBackIosNew/>}
                                 onClick={() => goBack()} sx={{textTransform: 'none'}} color="success"
                         >

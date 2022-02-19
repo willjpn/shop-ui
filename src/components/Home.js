@@ -47,7 +47,7 @@ const Home = ({history}) => {
                 <Grid sx={{
                     height: '15vh', display: 'flex', justifyContent: 'center',
                 }}>
-                    <HomeSearch query={query} count={count} totalCount={totalCount} setQuery={setQuery}
+                    <HomeSearch products={products} query={query} totalCount={totalCount} setQuery={setQuery}
                                 dispatch={dispatch}/>
                 </Grid>
                 <Grid sx={{

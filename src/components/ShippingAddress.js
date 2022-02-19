@@ -63,23 +63,34 @@ const ShippingAddress = ({shippingDetails}) => {
                 <Fragment>
 
                     <TextField type="text" label="Address" sx={{width: '90%', marginY: '10px'}} name="address"
+                               // error={!payload.address}
+                               // helperText={!payload.address && "This field can not be empty."}
                                value={payload.address}
                                onChange={(e) => editPayload(e)}/>
                     <TextField type="text" label="Post Code" sx={{width: '90%', marginY: '10px'}} name="postCode"
+                               // error={!payload.postCode}
+                               // helperText={!payload.postCode && "This field can not be empty."}
                                value={payload.postCode}
                                onChange={(e) => editPayload(e)}/>
                     <TextField type="text" label="City" sx={{width: '90%', marginY: '10px'}} name="city"
+                               // error={!payload.city}
+                               // helperText={!payload.city && "This field can not be empty."}
                                value={payload.city}
                                onChange={(e) => editPayload(e)}/>
                     <TextField type="text" label="County" sx={{width: '90%', marginY: '10px'}} name="county"
+                               // error={!payload.county}
+                               // helperText={!payload.county && "This field can not be empty."}
                                value={payload.county}
                                onChange={(e) => editPayload(e)}/>
                     <TextField type="text" label="Country" sx={{width: '90%', marginY: '10px'}} name="country"
+                               // error={!payload.country}
+                               // helperText={!payload.country && "This field can not be empty."}
                                value={payload.country}
                                onChange={(e) => editPayload(e)}/>
                     <Button variant='contained' color="success" size="small"
                             sx={{ marginY: '15px', paddingY: '5px'}}
                             startIcon={<Save/>} onClick={(e) => submit(e)}
+                            disabled={!payload.address || !payload.postCode || !payload.city || !payload.county || !payload.country}
                     >
                         Save Shipping Address
                     </Button>

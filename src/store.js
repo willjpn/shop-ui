@@ -8,9 +8,9 @@ import {
     productReducer,
     productsReducer, queryProductsReducer
 } from "./reducers/productReducer";
-import {authReducer} from "./reducers/authReducer";
+import {authReducer, getClientIdReducer} from "./reducers/authReducer";
 import {
-    addAddressReducer, addCheckoutAddressReducer,
+    addAddressReducer, addCheckoutAddressReducer, addTemporaryAddressReducer,
     addUserReducer,
     deleteUserReducer, editUserDetailsReducer,
     editUserReducer, resetPasswordReducer,
@@ -28,6 +28,7 @@ import {
     ordersReducer,
     payOrderReducer, removeOrderReducer
 } from "./reducers/orderReducer";
+import {addTemporaryAddress} from "./actions/userActions";
 
 const reducer = combineReducers({
     basket: basketReducer,
@@ -55,7 +56,9 @@ const reducer = combineReducers({
     orders: ordersReducer,
     removeOrder: removeOrderReducer,
     editUserDetails: editUserDetailsReducer,
-    userOrders: userOrdersReducer
+    userOrders: userOrdersReducer,
+    addTemporaryAddress: addTemporaryAddressReducer,
+    getClientId: getClientIdReducer
 })
 
 // TODO- we use cookies fyi / PAGINATION / AUTOCOMPLETE DELIVERY ADDRESS

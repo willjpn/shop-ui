@@ -1,15 +1,27 @@
 import axios from "axios";
 import {
     ADD_ADDRESS_FAILURE,
-    ADD_ADDRESS_REQUEST, ADD_ADDRESS_SUCCESS,
+    ADD_ADDRESS_REQUEST,
+    ADD_ADDRESS_SUCCESS,
+    ADD_CHECKOUT_ADDRESS,
+    ADD_CHECKOUT_ADDRESS_FAILURE,
+    ADD_CHECKOUT_ADDRESS_REQUEST, ADD_CHECKOUT_ADDRESS_SUCCESS,
     ADD_USER,
-    ADD_USER_FAILURE, ADD_USER_REQUEST, ADD_USER_SUCCESS,
+    ADD_USER_FAILURE,
+    ADD_USER_REQUEST,
+    ADD_USER_SUCCESS,
     DELETE_USER_FAILURE,
     DELETE_USER_REQUEST,
-    DELETE_USER_SUCCESS, EDIT_USER_DETAILS_FAILURE, EDIT_USER_DETAILS_REQUEST, EDIT_USER_DETAILS_SUCCESS,
+    DELETE_USER_SUCCESS,
+    EDIT_USER_DETAILS_FAILURE,
+    EDIT_USER_DETAILS_REQUEST,
+    EDIT_USER_DETAILS_SUCCESS,
     FETCH_EDIT_USER_FAILURE,
     FETCH_EDIT_USER_REQUEST,
-    FETCH_EDIT_USER_SUCCESS, FETCH_USER_ORDERS_FAILURE, FETCH_USER_ORDERS_REQUEST, FETCH_USER_ORDERS_SUCCESS,
+    FETCH_EDIT_USER_SUCCESS,
+    FETCH_USER_ORDERS_FAILURE,
+    FETCH_USER_ORDERS_REQUEST,
+    FETCH_USER_ORDERS_SUCCESS,
     GET_USER_FAILURE,
     GET_USER_REQUEST,
     GET_USER_SUCCESS,
@@ -19,11 +31,18 @@ import {
     LOGIN_FAILURE,
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
-    LOGOUT, REMOVE_USER, RESET_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS,
+    LOGOUT,
+    REMOVE_USER,
+    RESET_PASSWORD_FAILURE,
+    RESET_PASSWORD_REQUEST,
+    RESET_PASSWORD_SUCCESS,
     SIGNUP_DEFAULT,
     SIGNUP_FAILURE,
     SIGNUP_REQUEST,
-    SIGNUP_SUCCESS, UPDATE_USER_FAILURE, UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS
+    SIGNUP_SUCCESS,
+    UPDATE_USER_FAILURE,
+    UPDATE_USER_REQUEST,
+    UPDATE_USER_SUCCESS
 } from "../constants/userConstants";
 import {SET_ACCESS_TOKEN} from "../constants/authConstants";
 import {ErrorMessage} from "../utils/errorHandler";
@@ -219,5 +238,19 @@ export const fetchUserOrders = () => async (dispatch) => {
         dispatch({type: FETCH_USER_ORDERS_SUCCESS, payload: response.data})
     } catch (err) {
         dispatch({type: FETCH_USER_ORDERS_FAILURE, payload: new ErrorMessage(err).message})
+    }
+}
+
+export const addTemporaryAddress = (payload) => async (dispatch) => {
+    try {
+        dispatch({type: ADD_CHECKOUT_ADDRESS_REQUEST})
+
+        const response = await axios.post("http://localhost:8000/user/checkout-address", payload)
+
+        console.log("response.data", response.data)
+
+        dispatch({type: ADD_CHECKOUT_ADDRESS_SUCCESS, payload: payload})
+    } catch (err) {
+        dispatch({type: ADD_CHECKOUT_ADDRESS_FAILURE, payload: new ErrorMessage(err).message})
     }
 }

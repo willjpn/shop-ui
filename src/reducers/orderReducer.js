@@ -15,7 +15,7 @@ import {
     REMOVE_ORDER_FAILURE,
     REMOVE_ORDER_REQUEST,
     REMOVE_ORDER_SUCCESS,
-    RESET_CREATE_ORDER_STATE
+    RESET_CREATE_ORDER_STATE, SET_ORDER_PAID_STATE
 } from "../constants/orderConstants";
 import {REMOVE_USER} from "../constants/userConstants";
 
@@ -34,14 +34,16 @@ export const createOrderReducer = (state = {}, action) => {
     }
 }
 
-export const getOrderReducer = (state = {order: {}}, action) => {
+export const getOrderReducer = (state = {order: {items: []}}, action) => {
     switch (action.type) {
         case GET_ORDER_REQUEST:
-            return {loading: true, order: {}}
+            return {loading: true, order: {items: []}}
         case GET_ORDER_SUCCESS:
             return {loading: false, order: action.payload}
         case GET_ORDER_FAILURE:
-            return {loading: false, error: action.payload, order: {}}
+            return {loading: false, error: action.payload, order: {items: []}}
+        case SET_ORDER_PAID_STATE:
+            return {loading: false, order: {...state.order, isPaid: true}}
         default:
             return state
     }

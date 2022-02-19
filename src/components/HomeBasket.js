@@ -45,10 +45,10 @@ const HomeBasket = ({basket, history, dispatch}) => {
                 {!basket.length ? <Box sx={styles.emptyBasket}>Your Basket Is Empty!</Box>
                     : basket.map((item) => (
                         <Grid key={item._id} container sx={{display: 'flex'}}>
-                            <Grid sx={styles.productName} item xl={4}>
+                            <Grid sx={styles.productName} item xl={5}>
                                 {item.product.name}
                             </Grid>
-                            <Grid item xl={8} sx={styles.productActions}>
+                            <Grid item xl={7} sx={styles.productActions}>
                                 <Button onClick={() => decrement(item.product._id)} size="small"><Remove
                                     color="error"/></Button>
                                 <span>{item.quantity}</span>

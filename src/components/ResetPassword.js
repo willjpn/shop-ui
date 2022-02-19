@@ -39,17 +39,24 @@ const ResetPassword = () => {
             {loading ? <span style={{fontSize: '20px', color: 'green', letterSpacing: '1px', marginTop: 10, textAlign: 'center'}}>Resetting your password!</span> :
                 <Fragment>
                     <TextField type="password" label="Current Password" value={originalPassword} name="originalPassword"
+                               placeholder="Current Password"
                                onChange={(e) => setOriginalPassword(e.target.value)}
+                               // error={!originalPassword}
+                               // helperText={!originalPassword && "This field can not be empty."}
                                sx={{width: '90%', marginY: '10px'}}/>
-
                     <TextField type="password" label="New Password" value={newPassword} name="newPassword"
+                               // error={!newPassword}
+                               // helperText={!newPassword && "This field can not be empty."}
                                onChange={(e) => setNewPassword(e.target.value)} sx={{width: '90%', marginY: '10px'}}/>
                     <TextField type="password" label="Repeat New Password" value={repeatPassword} name="repeatPassword"
+                               // error={!repeatPassword}
+                               // helperText={!repeatPassword && "This field can not be empty."}
                                onChange={(e) => setRepeatPassword(e.target.value)}
                                sx={{width: '90%', marginY: '10px'}}/>
                     <Button variant='contained' color="success" size="small"
                             sx={{ marginY: '15px', paddingY: '5px'}}
                             startIcon={<Save/>} onClick={(e) => submit(e)}
+                            disabled={!originalPassword || !newPassword || !repeatPassword}
                     >
                         Reset Password
                     </Button>

@@ -10,7 +10,7 @@ const UserOrders = ({orders, history}) => {
     }
 
     return (
-        <Grid sx={{}}>
+        <Grid sx={{maxWidth: '90%'}}>
             {!orders.length ?
                 <span style={{letterSpacing: '1px', fontSize: '24px', color: 'darkgrey', textAlign: 'center', marginTop: '20px'}}>There are currently no orders to show!</span>
                 :

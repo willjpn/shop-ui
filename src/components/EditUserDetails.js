@@ -55,11 +55,17 @@ const EditUserDetails = ({userInfo}) => {
 
                     <TextField type="text" label="First Name" sx={{width: '90%', marginY: '10px'}} name="firstName"
                                value={payload.firstName}
+                               error={!payload.firstName}
+                               helperText={!payload.firstName && "This field can not be empty."}
                                onChange={(e) => editPayload(e)}/>
                     <TextField type="text" label="Last Name" sx={{width: '90%', marginY: '10px'}} name="lastName"
+                               error={!payload.lastName}
+                               helperText={!payload.lastName && "This field can not be empty."}
                                value={payload.lastName}
                                onChange={(e) => editPayload(e)}/>
-                    <TextField type="text" label="Email" sx={{width: '90%', marginY: '10px'}} name="email"
+                    <TextField type="email" label="Email" sx={{width: '90%', marginY: '10px'}} name="email"
+                               error={!payload.email}
+                               helperText={!payload.email && "This field can not be empty."}
                                value={payload.email}
                                onChange={(e) => editPayload(e)}/>
                     <Button variant='contained' color="success" size="small" onClick={(e) => {
@@ -67,6 +73,7 @@ const EditUserDetails = ({userInfo}) => {
                     }}
                             sx={{ marginY: '15px', paddingY: '5px'}}
                             startIcon={<Save/>}
+                            disabled={!payload.firstName || !payload.lastName || !payload.email}
                     >
                         Save Changes
                     </Button>

@@ -1,6 +1,7 @@
 import axios from "axios";
 import {refreshToken} from "../actions/authActions";
-import {REFRESH_FAILURE} from "../constants/authConstants";
+import {REFRESH_FAILURE, SET_ACCESS_TOKEN} from "../constants/authConstants";
+import {GET_USER_SUCCESS, LOGIN_SUCCESS} from "../constants/userConstants";
 
 let store
 
@@ -17,26 +18,58 @@ let subscribers = [];
 // for example: if we request products but it requires authorization and the user doesn't have a valid access token, this axios interceptor will run
 // before the .then() of the fetch products action which will allow the rest of the action to continue once we have access token
 
-const refreshTokenAndRequest = (config) => {
+const refreshTokenAndRequest = async (config) => {
     const retryRequest = new Promise((resolve, reject) => addSubscriber(() => {
         axios(config).then(resolve).catch(reject);
     }));
 
-
     if (!fetchingAccessToken) {
-        fetchingAccessToken = true;
-        return axios.get("http://localhost:8000/admin/refreshToken").then(() => {
+        try {
+            fetchingAccessToken = true
+            const response = await axios.get("http://localhost:8000/admin/refreshToken")
             alreadyRetriedRefresh = true
+            console.log("this runs")
+            console.log("response.data", response.data)
+            // once we've fetched new access token, we need to save it in redux store and then reattempt original request
+            const {userInfo, accessToken} = response.data
+
+            // TODO - temporary fix but it works as it should
+            await store.dispatch({type: LOGIN_SUCCESS, payload: userInfo})
+            await store.dispatch({type: SET_ACCESS_TOKEN, payload: accessToken})
+            await store.dispatch({type: GET_USER_SUCCESS, payload: userInfo})
             onAccessTokenFetched();
             fetchingAccessToken = false;
             return retryRequest;
-        }).catch(error => {
+        } catch (error) {
             console.log("error occurred when refreshing")
             store.dispatch({type: REFRESH_FAILURE})
             subscribers = [];
             return Promise.reject(error);
-        });
+        }
     }
+
+
+    // if (!fetchingAccessToken) {
+    //     fetchingAccessToken = true;
+    //     return axios.get("http://localhost:8000/admin/refreshToken").then((response) => {
+    //         alreadyRetriedRefresh = true
+    //         console.log("this runs")
+    //         console.log("response.data", response.data)
+    //         // once we've fetched new access token, we need to save it in redux store and then reattempt original request
+    //         const {userInfo, accessToken} = response.data
+    //
+    //         store.dispatch({type: LOGIN_SUCCESS, payload: userInfo})
+    //         store.dispatch({type: SET_ACCESS_TOKEN, payload: accessToken})
+    //         onAccessTokenFetched();
+    //         fetchingAccessToken = false;
+    //         return retryRequest;
+    //     }).catch(error => {
+    //         console.log("error occurred when refreshing")
+    //         store.dispatch({type: REFRESH_FAILURE})
+    //         subscribers = [];
+    //         return Promise.reject(error);
+    //     });
+    // }
     return retryRequest;
 }
 
