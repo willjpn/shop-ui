@@ -53,7 +53,7 @@ const ProductDetails = ({match, history}) => {
             <Grid xs={12} lg={9} sx={{overflowY: 'auto'}}>
 
                 <Grid container sx={{height: '25vh'}}>
-                    <Header/>
+                    <Header history={history}/>
                     <Container sx={{display: 'flex', alignItems: 'center', marginX: '25px', paddingY: '20px'}}>
                         <Button variant='text' size="large" startIcon={<ArrowBackIosNew/>}
                                 onClick={() => goBack()} sx={{textTransform: 'none'}} color="success"

@@ -249,7 +249,7 @@ export const addTemporaryAddress = (payload) => async (dispatch) => {
 
         console.log("response.data", response.data)
 
-        dispatch({type: ADD_CHECKOUT_ADDRESS_SUCCESS, payload: payload})
+        dispatch({type: ADD_CHECKOUT_ADDRESS_SUCCESS})
     } catch (err) {
         dispatch({type: ADD_CHECKOUT_ADDRESS_FAILURE, payload: new ErrorMessage(err).message})
     }

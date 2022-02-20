@@ -71,7 +71,7 @@ const NewProduct = ({history}) => {
 
     return (
         <Fragment>
-            <Header/>
+            <Header history={history}/>
             <button onClick={goBack}>Go Back</button>
             <h2>Create A New User</h2>
             {userLoading ? <h2>Loading user information</h2>

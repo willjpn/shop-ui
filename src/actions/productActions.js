@@ -33,11 +33,11 @@ export const fetchProducts = () => async (dispatch) => {
     }
 }
 
-export const queryProducts = (query, pageNumber) => async (dispatch) => {
+export const queryProducts = (query, page) => async (dispatch) => {
     try {
         dispatch({type: QUERY_PRODUCTS_REQUEST})
 
-        const response = await axios.post("http://localhost:8000/product/query", {query: query, pageNumber: pageNumber})
+        const response = await axios.post("http://localhost:8000/product/query", {query: query, page: page})
 
         dispatch({type: QUERY_PRODUCTS_SUCCESS, payload: response.data})
 

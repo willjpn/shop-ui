@@ -1,8 +1,9 @@
-import {Button, TextField} from "@mui/material";
+import {Button, Grid, TextField} from "@mui/material";
 import {Save} from "@mui/icons-material";
 import React, {Fragment, useEffect, useState} from "react";
 import {editUserDetails} from "../actions/userActions";
 import {useDispatch, useSelector} from "react-redux";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const EditUserDetails = ({userInfo}) => {
 
@@ -49,8 +50,6 @@ const EditUserDetails = ({userInfo}) => {
 
     return (
         <Fragment>
-            {loading ? <span
-                    style={{fontSize: '20px', color: 'green', letterSpacing: '1px', marginTop: 10, textAlign: 'center'}}>Updating your information!</span> :
                 <Fragment>
 
                     <TextField type="text" label="First Name" sx={{width: '90%', marginY: '10px'}} name="firstName"
@@ -68,15 +67,19 @@ const EditUserDetails = ({userInfo}) => {
                                helperText={!payload.email && "This field can not be empty."}
                                value={payload.email}
                                onChange={(e) => editPayload(e)}/>
-                    <Button variant='contained' color="success" size="small" onClick={(e) => {
-                        submit(e)
-                    }}
-                            sx={{ marginY: '15px', paddingY: '5px'}}
-                            startIcon={<Save/>}
-                            disabled={!payload.firstName || !payload.lastName || !payload.email}
-                    >
-                        Save Changes
-                    </Button>
+                    <Grid style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+                        <LoadingButton variant='outlined' color="success" size="large" onClick={(e) => {
+                            submit(e)
+                        }}
+                                       sx={{ marginY: '15px', paddingY: '5px'}}
+                                       loading={loading}
+                                       startIcon={<Save/>}
+                                       disabled={!payload.firstName || !payload.lastName || !payload.email}
+                        >
+                            Save Changes
+                        </LoadingButton>
+                    </Grid>
+
                     {success && <span style={{
                         fontSize: '20px',
                         color: 'green',
@@ -91,7 +94,7 @@ const EditUserDetails = ({userInfo}) => {
                         marginTop: 10,
                         textAlign: 'center'
                     }}>{error}</span>}
-                </Fragment>}
+                </Fragment>
 
         </Fragment>
     )

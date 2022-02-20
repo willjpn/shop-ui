@@ -54,7 +54,7 @@ const UserProfile = ({history}) => {
         }}>
             <Grid item xs={12} >
                 <Grid container sx={{height: '20vh',borderBottom: 1, borderWidth: 'thick', borderColor: 'lightgrey'}}>
-                    <Header/>
+                    <Header history={history}/>
                 </Grid>
                 <Grid sx={{height: '80vh'}} container>
                     {error ? <h2>Unable to load user information...</h2> : loading ?

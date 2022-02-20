@@ -36,7 +36,7 @@ import {
     REMOVE_USER,
     RESET_PASSWORD_FAILURE,
     RESET_PASSWORD_REQUEST,
-    RESET_PASSWORD_SUCCESS, RESET_TEMPORARY_ADDRESS_STATE,
+    RESET_PASSWORD_SUCCESS, RESET_TEMPORARY_ADDRESS_STATE, RESET_USER_INFO,
     SET_DEFAULT_ADDRESS_ADD,
     SET_DEFAULT_PASSWORD_RESET,
     SIGNUP_DEFAULT,
@@ -76,6 +76,8 @@ export const userDetailsReducer = (state = userDetailsInitialState, action) => {
             return {loading: false, userInfo: action.payload}
         case GET_USER_FAILURE:
             return {loading: false, userInfo: {}, error: action.payload}
+        case RESET_USER_INFO:
+            return {userInfo: {}}
         default:
             return state
     }

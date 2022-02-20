@@ -43,7 +43,7 @@ const UserList = ({history}) => {
 
     return (
         <Fragment>
-            <Header/>
+            <Header history={history}/>
             <h2>User List</h2>
             {userError ? <h2>Unable to load user</h2>
                 : userLoading ? <h2>Loading user information</h2>

@@ -72,7 +72,7 @@ const EditUser = ({match, history}) => {
 
     return (
         <Fragment>
-            <Header/>
+            <Header history={history}/>
             <button onClick={goBack}>Go Back</button>
             <h2>Edit User</h2>
             {userLoading ? <h2>Loading user information</h2>

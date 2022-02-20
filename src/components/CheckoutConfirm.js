@@ -5,7 +5,7 @@ import Header from "./Header";
 import {createOrder} from "../actions/orderActions";
 import {emptyBasket} from "../actions/basketActions";
 import {RESET_CREATE_ORDER_STATE} from "../constants/orderConstants";
-import {Box, Button, Container, Divider, Grid} from "@mui/material";
+import {Box, Button, Container, Divider, Grid, useMediaQuery, useTheme} from "@mui/material";
 import {ArrowBackIosNew, ShoppingBasket} from "@mui/icons-material";
 
 // TODO - remove devtools extension and check package.json
@@ -55,14 +55,20 @@ const CheckoutConfirm = ({history}) => {
 
     // this is to check if an address was submitted in previous step. If not, go back to shipping step
     useEffect(() => {
+        console.log("userInfo in confirm", userInfo)
         if (userInfo._id) {
-            if (!userInfo.checkoutAddress.postCode) {
-                console.log("no address")
+            // if (!userInfo.checkoutAddress.postCode) {
+            //     console.log("no address")
+            //     return history.push("/checkout/shipping")
+            // }
+            // setAddress(userInfo.checkoutAddress)
+            if (!userInfo.checkoutAddress) {
                 return history.push("/checkout/shipping")
+            } else {
+                setAddress(userInfo.checkoutAddress)
             }
-            setAddress(userInfo.checkoutAddress)
 
-            console.log("checkoutAddress provided", userInfo.checkoutAddress)
+            console.log("checkoutAddress provided", userInfo)
         }
     }, [userInfo])
 
@@ -117,6 +123,9 @@ const CheckoutConfirm = ({history}) => {
         history.push("/checkout/shipping")
     }
 
+    const theme = useTheme();
+    const showBasket = useMediaQuery(theme.breakpoints.up('md'));
+
     // TODO- update stock count after order is placed or delivered
 
     return (
@@ -124,7 +133,7 @@ const CheckoutConfirm = ({history}) => {
             alignItems: 'flex-start',
         }}>
             <Grid container sx={{height: '25vh'}}>
-                <Header/>
+                <Header history={history}/>
             </Grid>
             <Divider variant="middle"/>
             <Grid container sx={{height: '10vh'}}>
@@ -164,36 +173,40 @@ const CheckoutConfirm = ({history}) => {
                                         marginTop: '5px',
                                         marginBottom: '30px'
                                     }}>Address: {address.address + ", " + address.city + ", " + address.postCode + ", " + address.county + ", " + address.country}</span>
-                                    <span style={{...styles.subtitle, marginBottom: '20px', width: '100%'}}>Items</span>
-                                    {basket.map(item => {
-                                        return (
-                                            <Fragment>
-                                                <Grid container
-                                                      sx={{display: 'flex', flexWrap: 'wrap', marginBottom: '10px'}}>
-                                                    <Grid item xs={2}><img style={{
-                                                        width: '100%',
-                                                        height: '75px',
-                                                        objectFit: 'contain'
-                                                    }} src={item.product.image} alt={item.product.name}/></Grid>
-                                                    <Grid xs={1} item/>
-                                                    <Grid item xs={2}
-                                                          sx={{
-                                                              alignItems: 'center',
-                                                              display: 'flex',
-                                                              letterSpacing: '1px',
-                                                          }}>{item.product.name}</Grid>
-                                                    <Grid xs={1}/>
-                                                    <Grid item xs={4} sx={{
-                                                        alignItems: 'center',
-                                                        display: 'flex', letterSpacing: '1px',
-                                                    }}>{item.quantity + " x " + "£" + item.product.price + " = " + "£" + item.quantity * item.product.price}</Grid>
-                                                    <Grid xs={2}/>
-                                                </Grid>
-                                                <Divider variant="middle" sx={{color: 'lightgrey'}}/>
-                                            </Fragment>
+                                    {showBasket && <Fragment>
 
-                                        )
-                                    })}
+                                        <span style={{...styles.subtitle, marginBottom: '20px', width: '100%'}}>Items</span>
+                                        {basket.map(item => {
+                                            return (
+                                                <Fragment key={item.product._id}>
+                                                    <Grid container
+                                                          sx={{display: 'flex', flexWrap: 'wrap', marginBottom: '10px'}}>
+                                                        <Grid item xs={2}><img style={{
+                                                            width: '100%',
+                                                            height: '75px',
+                                                            objectFit: 'contain'
+                                                        }} src={item.product.image} alt={item.product.name}/></Grid>
+                                                        <Grid xs={1} item/>
+                                                        <Grid item xs={2}
+                                                              sx={{
+                                                                  alignItems: 'center',
+                                                                  display: 'flex',
+                                                                  letterSpacing: '1px',
+                                                              }}>{item.product.name}</Grid>
+                                                        <Grid xs={1}/>
+                                                        <Grid item xs={4} sx={{
+                                                            alignItems: 'center',
+                                                            display: 'flex', letterSpacing: '1px',
+                                                        }}>{item.quantity + " x " + "£" + item.product.price + " = " + "£" + item.quantity * item.product.price}</Grid>
+                                                        <Grid xs={2}/>
+                                                    </Grid>
+                                                    <Divider variant="middle" sx={{color: 'lightgrey'}}/>
+                                                </Fragment>
+
+                                            )
+                                        })}
+
+                                    </Fragment>}
                                 </Container>
 
                             </Grid>

@@ -5,7 +5,7 @@ const HomeSearch = ({query, setQuery, totalCount, products}) => {
         <Container sx={{marginTop: 3}}>
             <TextField label="Search" variant="filled" value={query} size='large'
                        onChange={e => setQuery(e.target.value)} fullWidth/>
-            <Grid sx={styles.productCountInfo}>Displaying {products.length} Of {totalCount} Items</Grid>
+            <Grid sx={styles.productCountInfo}>Displaying {products.length} of {totalCount} items</Grid>
         </Container>
     )
 }

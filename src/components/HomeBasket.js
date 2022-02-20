@@ -44,7 +44,7 @@ const HomeBasket = ({basket, history, dispatch}) => {
                 <Box sx={styles.basketTitle}>Basket</Box>
                 {!basket.length ? <Box sx={styles.emptyBasket}>Your Basket Is Empty!</Box>
                     : basket.map((item) => (
-                        <Grid key={item._id} container sx={{display: 'flex'}}>
+                        <Grid key={item.product._id} container sx={{display: 'flex'}}>
                             <Grid sx={styles.productName} item xl={5}>
                                 {item.product.name}
                             </Grid>

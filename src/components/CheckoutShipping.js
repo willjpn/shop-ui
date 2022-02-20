@@ -2,7 +2,7 @@ import React, {Fragment, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addCheckoutAddress, addTemporaryAddress, getUser} from "../actions/userActions";
 import Header from "./Header";
-import {ADD_CHECKOUT_ADDRESS, RESET_TEMPORARY_ADDRESS_STATE} from "../constants/userConstants";
+import {ADD_CHECKOUT_ADDRESS, RESET_TEMPORARY_ADDRESS_STATE, RESET_USER_INFO} from "../constants/userConstants";
 import {Box, Button, Container, Divider, Grid, MenuItem, Select, TextField} from "@mui/material";
 import {ArrowBackIosNew, Save, ShoppingBasket, ShoppingCart} from "@mui/icons-material";
 import HomeBasket from "./HomeBasket";
@@ -30,6 +30,10 @@ const CheckoutShipping = ({history}) => {
         county: '',
         country: ''
     })
+
+    useEffect(() => {
+        console.log("userinfo in shipping", userInfo)
+    }, [userInfo])
 
     useEffect(() => {
         // check if user has access
@@ -72,7 +76,11 @@ const CheckoutShipping = ({history}) => {
         if (addTemporaryAddressSuccess) {
             history.push("/checkout/confirm")
         }
+
         dispatch({type: RESET_TEMPORARY_ADDRESS_STATE})
+        // we need to reset the user info because in the confirm step we check for userInfo.checkoutAddress. If userInfo already exists in redux,
+        // it won't have a checkout address and we therefore get redirected to this screen
+        dispatch({type: RESET_USER_INFO})
     }, [addTemporaryAddressSuccess])
 
     const goBack = (e) => {
@@ -88,7 +96,7 @@ const CheckoutShipping = ({history}) => {
             <Grid xs={12} sx={{overflowY: 'auto'}}>
 
                 <Grid container sx={{height: '25vh'}}>
-                    <Header/>
+                    <Header history={history}/>
                     {/*<Container sx={{display: 'flex', alignItems: 'center', marginX: '25px', paddingY: '20px'}}>*/}
                     {/*</Container>*/}
                 </Grid>
@@ -112,34 +120,24 @@ const CheckoutShipping = ({history}) => {
                                 <span style={styles.subtitle}>Add Shipping Address</span>
 
                                 <TextField type="text" label="Address" sx={{width: '90%', marginY: '10px'}}
-                                           error={!payload.address}
-                                           helperText={!payload.address && "This field can not be empty."}
                                            required
                                            name="address"
                                            value={payload.address}
                                            onChange={(e) => editPayload(e)}/>
                                 <TextField type="text" label="Post Code" sx={{width: '90%', marginY: '10px'}}
-                                           error={!payload.postCode}
-                                           helperText={!payload.postCode && "This field can not be empty."}
                                            name="postCode"
                                            required
                                            value={payload.postCode}
                                            onChange={(e) => editPayload(e)}/>
                                 <TextField type="text" label="City" sx={{width: '90%', marginY: '10px'}} name="city"
-                                           error={!payload.city}
-                                           helperText={!payload.city && "This field can not be empty."}
                                            value={payload.city}
                                            required
                                            onChange={(e) => editPayload(e)}/>
                                 <TextField type="text" label="County" sx={{width: '90%', marginY: '10px'}} name="county"
-                                           error={!payload.county}
-                                           helperText={!payload.county && "This field can not be empty."}
                                            value={payload.county}
                                            required
                                            onChange={(e) => editPayload(e)}/>
                                 <TextField type="text" label="Country" sx={{width: '90%', marginY: '10px'}}
-                                           error={!payload.country}
-                                           helperText={!payload.country && "This field can not be empty."}
                                            name="country"
                                            required
                                            value={payload.country}
@@ -147,7 +145,7 @@ const CheckoutShipping = ({history}) => {
                                 <Grid sx={{...styles.checkoutButtonGrid}}>
                                     <Button variant='outlined' color="success" size="large" sx={styles.checkoutButton}
                                             startIcon={<Save/>} onClick={(e) => submit(e)}
-                                            disabled={!payload.address || !payload.city || !payload.postCode || !payload.county || !payload.country }
+                                            disabled={!payload.address || !payload.city || !payload.postCode || !payload.county || !payload.country}
                                     >
                                         Confirm
                                     </Button>

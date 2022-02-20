@@ -1,4 +1,4 @@
-import {Grid} from "@mui/material";
+import {Button, Grid} from "@mui/material";
 import logo from "../assets/logo.png";
 import {Fragment, useEffect} from "react";
 import {Link} from "react-router-dom";
@@ -15,7 +15,9 @@ const Header = ({history}) => {
 
     const signOut = () => {
         dispatch(logout())
+        history.push("/")
     }
+
 
     // TODO - have to click on the account text to go to account instead of clicking on the box padding currently
 
@@ -35,116 +37,85 @@ const Header = ({history}) => {
                 </Link>
 
             </Grid>
-            <Grid item xs={12} sm={12} md={4} sx={{
-                display: 'flex',
-                alignItems: 'center',
-                // border: 1, borderWidth: 'thin',
-                justifyContent: 'space-evenly'
-
-            }}>
+            <Grid item xs={12} sm={12} md={4}>
 
                 <Fragment>
+
                     {userInfo._id ?
-                        <Fragment>
-                            {userInfo.isAdmin &&
-                            <Grid item xs={2} sx={{
-                                // border: 1, borderWidth: 'thin',
-                                height: '60px',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                borderRadius: '10px',
-                                paddingX: '60px',
 
-                                ":hover": {
-                                    backgroundColor: 'rgba(0, 150, 225, 0.125)',
-                                    cursor: 'pointer',
-                                }
+                        <Grid container sx={{display: 'flex', height: '100%'}}>
 
-                            }}>
-                                <Link style={{
-                                    textDecoration: 'none',
-                                    color: 'black',
-                                    textTransform: 'capitalize',
-                                    letterSpacing: '1px',
-                                    fontSize: '18px',
-
-                                }} to="/product-list">Admin</Link>
-                            </Grid>
-                            }
-                            <Grid item xs={2} sx={{
-                                height: '60px',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                borderRadius: '10px',
-                                paddingX: '60px',
-
-                                ":hover": {
-                                    backgroundColor: 'rgba(0, 150, 225, 0.125)',
-                                    cursor: 'pointer',
-                                }
-                            }}>
-                                <Link style={{
-                                    textDecoration: 'none',
-                                    color: 'black',
-                                    textTransform: 'capitalize',
-                                    letterSpacing: '1px',
-                                    fontSize: '18px',
-                                }} to="/user-profile">Account</Link>
-                            </Grid>
-                            <Grid item xs={2} onClick={signOut} sx={{
-                                height: '60px',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                borderRadius: '10px',
-                                paddingX: '60px',
-
-                                ":hover": {
-                                    backgroundColor: 'rgba(0, 150, 225, 0.125)',
-                                    cursor: 'pointer',
-                                }
-                            }}>
-                                <Link style={{
+                            <Grid item xs={userInfo.isAdmin ? 4 : 2}
+                                  sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                {userInfo.isAdmin &&
+                                <Button size="large" onClick={() => history.push("/product-list")} sx={{
                                     textDecoration: 'none',
                                     color: 'black',
                                     textTransform: 'capitalize',
                                     letterSpacing: '1px',
                                     fontSize: '18px'
-                                }} to="/">Logout</Link>
+                                }}>
+                                    Admin
+                                </Button>}
                             </Grid>
 
-                        </Fragment>
-                        :
-                        <Fragment>
-                            <Grid item xs={3}/>
-                            <Grid item xs={3}/>
-                            <Grid item xs={3} sx={{
-                                height: '60px',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                borderRadius: '10px',
-                                paddingX: '60px',
-
-                                ":hover": {
-                                    backgroundColor: 'rgba(0, 150, 225, 0.125)',
-                                    cursor: 'pointer',
-                                }
-                            }}>
-                                <Link style={{
+                            <Grid item xs={4}
+                                  sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                <Button size="large" onClick={() => history.push("/user-profile")} sx={{
                                     textDecoration: 'none',
                                     color: 'black',
                                     textTransform: 'capitalize',
                                     letterSpacing: '1px',
                                     fontSize: '18px'
-                                }} to="/login">Login</Link>
+                                }}>
+                                    Account
+                                </Button>
                             </Grid>
-                        </Fragment>
+                            <Grid item xs={4}
+                                  sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                <Button size="large" onClick={signOut} sx={{
+                                    textDecoration: 'none',
+                                    color: 'black',
+                                    textTransform: 'capitalize',
+                                    letterSpacing: '1px',
+                                    fontSize: '18px'
+                                }}>
+                                    Logout
+                                </Button>
+                            </Grid>
+                            {!userInfo.isAdmin && <Grid xs={2} />}
 
+                        </Grid> :
+                        <Grid container sx={{display: 'flex', height: '100%'}}>
+                            <Grid item xs={2}/>
+                            <Grid item xs={4}
+                                  sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                <Button size="large" onClick={() => {history.push("/login")}} sx={{
+                                    textDecoration: 'none',
+                                    color: 'black',
+                                    textTransform: 'capitalize',
+                                    letterSpacing: '1px',
+                                    fontSize: '18px'
+                                }}>
+                                    Login
+                                </Button>
+                            </Grid>
+                            <Grid item xs={4}
+                                  sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                <Button size="large" onClick={() => history.push("/signup")} sx={{
+                                    textDecoration: 'none',
+                                    color: 'black',
+                                    textTransform: 'capitalize',
+                                    letterSpacing: '1px',
+                                    fontSize: '18px'
+                                }}>
+                                    Register
+                                </Button>
+                            </Grid>
+                            <Grid item xs={2}/>
+
+                        </Grid>
                     }
-
                 </Fragment>
             </Grid>
         </Fragment>

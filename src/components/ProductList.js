@@ -43,7 +43,7 @@ const ProductList = ({history}) => {
     }, [refreshFailed])
     return (
         <Fragment>
-            <Header/>
+            <Header history={history}/>
             <h2>Product List</h2>
             {userLoading ? <h2>Loading user information</h2>
                 : userError ? <h2>An error has occurred whilst fetching user information</h2>
