@@ -1,6 +1,4 @@
-import {Fragment} from "react";
 import {Button, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
-
 
 const UserOrders = ({orders, history}) => {
 

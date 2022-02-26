@@ -4,12 +4,10 @@ import {fetchUserOrders, getUser} from "../actions/userActions";
 import Header from "./Header";
 import ResetPassword from "./ResetPassword";
 import ShippingAddress from "./ShippingAddress";
-import {Grid, ToggleButton, ToggleButtonGroup, useMediaQuery, useTheme} from "@mui/material";
+import {Grid, ToggleButton, ToggleButtonGroup} from "@mui/material";
 
 import EditUserDetails from "./EditUserDetails";
 import UserOrders from "./UserOrders";
-
-// TODO- change app title in chrome tab - Currently "React App"
 
 const UserProfile = ({history}) => {
 

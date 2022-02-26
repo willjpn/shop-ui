@@ -15,18 +15,19 @@ import EditProduct from "./components/EditProduct";
 import UserList from "./components/UserList";
 import EditUser from "./components/EditUser";
 import NewUser from "./components/NewUser";
-import BasketPage from "./components/BasketPage";
 import CheckoutShipping from "./components/CheckoutShipping";
 import CheckoutConfirm from "./components/CheckoutConfirm";
 import OrderOverview from "./components/OrderOverview";
-import AdminOrders from "./components/AdminOrders";
 import OrderList from "./components/OrderList";
 
 function App() {
 
+    // TODO - add cookie consent
+
     const dispatch = useDispatch()
 
     useEffect(() => {
+        console.log("refresh in app.js")
         dispatch(refreshToken())
     }, [])
 
@@ -43,11 +44,9 @@ function App() {
             <Route path="/user-list" component={UserList}/>
             <Route path='/user/edit/:id' component={EditUser}/>
             <Route path='/user/new' component={NewUser}/>
-            <Route path='/basket' component={BasketPage}/>
             <Route path='/checkout/shipping' component={CheckoutShipping}/>
             <Route path='/checkout/confirm' component={CheckoutConfirm}/>
             <Route path='/orders/:id' component={OrderOverview}/>
-            <Route path='/admin/orders' component={AdminOrders}/>
             <Route path='/order-list' component={OrderList}/>
             <Route component={ErrorPage}/>
         </Switch>

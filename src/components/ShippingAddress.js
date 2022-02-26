@@ -8,8 +8,6 @@ import LoadingButton from "@mui/lab/LoadingButton";
 
 const ShippingAddress = ({shippingDetails}) => {
 
-    // TODO - add multiple shipping addresses
-
     const addAddressState = useSelector(state => state.addAddress)
     const {loading, error, success} = addAddressState
 
@@ -61,28 +59,18 @@ const ShippingAddress = ({shippingDetails}) => {
     return (
         <Fragment>
             <TextField type="text" label="Address" sx={{width: '90%', marginY: '10px'}} name="address"
-                // error={!payload.address}
-                // helperText={!payload.address && "This field can not be empty."}
                        value={payload.address}
                        onChange={(e) => editPayload(e)}/>
             <TextField type="text" label="Post Code" sx={{width: '90%', marginY: '10px'}} name="postCode"
-                // error={!payload.postCode}
-                // helperText={!payload.postCode && "This field can not be empty."}
                        value={payload.postCode}
                        onChange={(e) => editPayload(e)}/>
             <TextField type="text" label="City" sx={{width: '90%', marginY: '10px'}} name="city"
-                // error={!payload.city}
-                // helperText={!payload.city && "This field can not be empty."}
                        value={payload.city}
                        onChange={(e) => editPayload(e)}/>
             <TextField type="text" label="County" sx={{width: '90%', marginY: '10px'}} name="county"
-                // error={!payload.county}
-                // helperText={!payload.county && "This field can not be empty."}
                        value={payload.county}
                        onChange={(e) => editPayload(e)}/>
             <TextField type="text" label="Country" sx={{width: '90%', marginY: '10px'}} name="country"
-                // error={!payload.country}
-                // helperText={!payload.country && "This field can not be empty."}
                        value={payload.country}
                        onChange={(e) => editPayload(e)}/>
             <Grid style={{width: '100%', display: 'flex', justifyContent: 'center'}}>

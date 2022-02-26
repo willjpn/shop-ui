@@ -12,9 +12,6 @@ import {ArrowBackIosNew, ShoppingBasket} from "@mui/icons-material";
 
 const CheckoutConfirm = ({history}) => {
 
-    // TODO - current issue is that if we refresh we lose the checkout address, can solve this by adding "temporaryAddress" for the user
-    // on the backend
-
     const {refreshFailed} = useSelector(state => state.auth)
     const userDetails = useSelector(state => state.userDetails)
 
@@ -24,9 +21,6 @@ const CheckoutConfirm = ({history}) => {
 
     const [address, setAddress] = useState({})
 
-    // const addCheckoutAddress = useSelector(state => state.addCheckoutAddress)
-    // const {address} = addCheckoutAddress
-
     const createOrderState = useSelector(state => state.createOrder)
     const {loading: createOrderLoading, error: createOrderError, order, success} = createOrderState
 
@@ -35,11 +29,6 @@ const CheckoutConfirm = ({history}) => {
     const {loading, error, userInfo} = userDetails
 
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        console.log("basket", basket)
-    }, [basket])
-
 
     useEffect(() => {
         // check if user has access
@@ -55,20 +44,12 @@ const CheckoutConfirm = ({history}) => {
 
     // this is to check if an address was submitted in previous step. If not, go back to shipping step
     useEffect(() => {
-        console.log("userInfo in confirm", userInfo)
         if (userInfo._id) {
-            // if (!userInfo.checkoutAddress.postCode) {
-            //     console.log("no address")
-            //     return history.push("/checkout/shipping")
-            // }
-            // setAddress(userInfo.checkoutAddress)
             if (!userInfo.checkoutAddress) {
                 return history.push("/checkout/shipping")
             } else {
                 setAddress(userInfo.checkoutAddress)
             }
-
-            console.log("checkoutAddress provided", userInfo)
         }
     }, [userInfo])
 
@@ -80,8 +61,6 @@ const CheckoutConfirm = ({history}) => {
             dispatch({type: RESET_CREATE_ORDER_STATE})
         }
     }, [success])
-
-    // TODO- what if user tries to navigate to the page with an empty basket
 
     useEffect(() => {
         if (!basket.length) {
@@ -127,6 +106,8 @@ const CheckoutConfirm = ({history}) => {
     const showBasket = useMediaQuery(theme.breakpoints.up('md'));
 
     // TODO- update stock count after order is placed or delivered
+
+    // TODO - add green and red loading and error text respectively
 
     return (
         <Grid container sx={{

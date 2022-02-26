@@ -9,8 +9,6 @@ import {ArrowBackIosNew} from "@mui/icons-material";
 
 const OrderOverview = ({match, history}) => {
 
-    // TODO - need to see if the order belongs to the user trying to access it
-
     const [address, setAddress] = useState({})
     const [exVat, setExVat] = useState()
     const [vat, setVat] = useState()
@@ -29,7 +27,6 @@ const OrderOverview = ({match, history}) => {
 
     useEffect(() => {
         if (order._id) {
-            console.log("order", order)
             setAddress(order.shippingAddress)
             setVat(order.vat)
             setExVat(order.exVat)
@@ -262,8 +259,6 @@ const OrderOverview = ({match, history}) => {
                                                     <Grid sx={{
                                                         width: '90%',
                                                         height: '100px',
-                                                        // display: 'flex',
-                                                        // justifyContent: 'center',
                                                     }}>
                                                         <Payment order={order}/>
                                                     </Grid>

@@ -1,6 +1,6 @@
-import {Button, Grid, TextField} from "@mui/material";
+import {Grid, TextField} from "@mui/material";
 import {Save} from "@mui/icons-material";
-import React, {Fragment, useEffect, useState} from "react";
+import {Fragment, useEffect, useState} from "react";
 import {editUserDetails} from "../actions/userActions";
 import {useDispatch, useSelector} from "react-redux";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -51,7 +51,6 @@ const EditUserDetails = ({userInfo}) => {
     return (
         <Fragment>
                 <Fragment>
-
                     <TextField type="text" label="First Name" sx={{width: '90%', marginY: '10px'}} name="firstName"
                                value={payload.firstName}
                                error={!payload.firstName}

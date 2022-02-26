@@ -4,6 +4,7 @@ import {editProduct, fetchProduct} from "../actions/productActions";
 import {useDispatch, useSelector} from "react-redux";
 import Header from "./Header";
 import {EDIT_PRODUCT_RESET} from "../constants/productConstants";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const EditProduct = ({match, history}) => {
 
@@ -23,10 +24,7 @@ const EditProduct = ({match, history}) => {
     const [name, setName] = useState("")
     const [price, setPrice] = useState("")
 
-    // first thing to do is check for admin access
-
     useEffect(() => {
-        // check if user has admin rights
         dispatch(getUser())
     }, [dispatch])
 
@@ -91,13 +89,20 @@ const EditProduct = ({match, history}) => {
                                                        onChange={(e) => setPrice(e.target.value)}/>
                                             </div>
                                             <div>
-                                                <button onClick={submitProduct}>
+                                                <LoadingButton onClick={submitProduct} loading={editProductLoading}>
                                                     Submit
-                                                </button>
+                                                </LoadingButton>
                                             </div>
+                                            {editProductError &&
+                                            <span style={{
+                                                fontSize: '20px',
+                                                color: 'red',
+                                                letterSpacing: '1px',
+                                                marginTop: 10,
+                                                textAlign: 'center'
+                                            }}>{editProductError}</span>}
                                         </form>
                                     </div>
-
             }
         </Fragment>
     )

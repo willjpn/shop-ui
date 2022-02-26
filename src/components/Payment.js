@@ -1,4 +1,4 @@
-import {PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer} from "@paypal/react-paypal-js";
+import {PayPalScriptProvider, PayPalButtons} from "@paypal/react-paypal-js";
 import {useEffect} from "react"
 import {useDispatch, useSelector} from "react-redux";
 import {getClientId} from "../actions/authActions";
@@ -19,7 +19,6 @@ const Payment = ({order}) => {
     const postPaymentHandler = () => {
         dispatch(payOrder(order._id))
     };
-
 
     return (
         <Grid sx={{marginTop: '25px', width: '100%'}}>

@@ -15,7 +15,7 @@ export const addToBasket = (item, fromHomeScreen) => async (dispatch, getState) 
         })
         localStorage.setItem("basket", JSON.stringify(getState().basket.basket))
     } catch (err) {
-        console.error(err.message)
+        // console.error(err.message)
     }
 }
 
@@ -27,7 +27,7 @@ export const removeFromBasket = (id) => async (dispatch, getState) => {
         })
         localStorage.setItem("basket", JSON.stringify(getState().basket.basket))
     } catch (err) {
-        console.error(err.message)
+        // console.error(err.message)
     }
 }
 
@@ -36,7 +36,7 @@ export const emptyBasket = () => async (dispatch, getState) => {
         dispatch({type: EMPTY_BASKET})
         localStorage.setItem("basket", JSON.stringify(getState().basket.basket))
     } catch (err) {
-        console.error(err.message)
+        // console.error(err.message)
     }
 }
 
@@ -45,7 +45,7 @@ export const incrementProduct = (id) => async (dispatch, getState) => {
         dispatch({type: INCREMENT_PRODUCT, payload: id})
         localStorage.setItem("basket", JSON.stringify(getState().basket.basket))
     } catch (err) {
-        console.error(err.message)
+        // console.error(err.message)
     }
 }
 
@@ -54,6 +54,6 @@ export const decrementProduct = (id) => async (dispatch, getState) => {
         dispatch({type: DECREMENT_PRODUCT, payload: id})
         localStorage.setItem("basket", JSON.stringify(getState().basket.basket))
     } catch (err) {
-        console.error(err.message)
+        // console.error(err.message)
     }
 }

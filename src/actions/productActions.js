@@ -23,7 +23,7 @@ export const fetchProducts = () => async (dispatch) => {
     try {
         dispatch({type: FETCH_PRODUCTS_REQUEST})
 
-        const response = await axios.get("http://localhost:8000/product")
+        const response = await axios.get("/product")
 
         dispatch({type: FETCH_PRODUCTS_SUCCESS, payload: response.data})
 
@@ -37,7 +37,7 @@ export const queryProducts = (query, page) => async (dispatch) => {
     try {
         dispatch({type: QUERY_PRODUCTS_REQUEST})
 
-        const response = await axios.post("http://localhost:8000/product/query", {query: query, page: page})
+        const response = await axios.post("/product/query", {query: query, page: page})
 
         dispatch({type: QUERY_PRODUCTS_SUCCESS, payload: response.data})
 
@@ -49,11 +49,8 @@ export const queryProducts = (query, page) => async (dispatch) => {
 export const fetchProduct = (id) => async (dispatch) => {
     try {
         dispatch({type: FETCH_PRODUCT_REQUEST})
-        const response = await axios.get(`http://localhost:8000/product/${id}`)
-        dispatch({
-            type: FETCH_PRODUCT_SUCCESS,
-            payload: response.data
-        })
+        const response = await axios.get(`/product/${id}`)
+        dispatch({type: FETCH_PRODUCT_SUCCESS, payload: response.data})
     } catch (err) {
         const errorMessage = new ErrorMessage(err).message
         dispatch({type: FETCH_PRODUCT_FAILURE, payload: errorMessage})
@@ -63,15 +60,12 @@ export const fetchProduct = (id) => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch) => {
     try {
         dispatch({type: REMOVE_PRODUCT_REQUEST})
-        await axios.delete(`http://localhost:8000/product/${id}`)
+        await axios.delete(`/product/${id}`)
         dispatch({type: REMOVE_PRODUCT, payload: id})
         dispatch({type: REMOVE_PRODUCT_SUCCESS})
     } catch (err) {
         const errorMessage = new ErrorMessage(err).message
-        dispatch({
-            type: REMOVE_PRODUCT_FAILURE,
-            payload: errorMessage
-        })
+        dispatch({type: REMOVE_PRODUCT_FAILURE, payload: errorMessage})
     }
 }
 
@@ -87,7 +81,7 @@ export const addProduct = ({name, price, file, stockCount, productCode, descript
         formData.append("productCode", productCode)
         formData.append("description", description)
 
-        const response = await axios.post("http://localhost:8000/product", formData, {
+        const response = await axios.post("/product", formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -97,14 +91,9 @@ export const addProduct = ({name, price, file, stockCount, productCode, descript
         dispatch({type: ADD_PRODUCT, payload: response.data})
 
         dispatch({type: ADD_PRODUCT_SUCCESS})
-
-
     } catch (err) {
         const errorMessage = new ErrorMessage(err).message
-        dispatch({
-            type: ADD_PRODUCT_FAILURE,
-            payload: errorMessage
-        })
+        dispatch({type: ADD_PRODUCT_FAILURE, payload: errorMessage})
     }
 }
 
@@ -112,7 +101,7 @@ export const editProduct = (id, payload) => async (dispatch) => {
     try {
         dispatch({type: EDIT_PRODUCT_REQUEST})
 
-        await axios.put(`http://localhost:8000/product/${id}`, payload)
+        await axios.put(`/product/${id}`, payload)
 
         dispatch({type: EDIT_PRODUCT_SUCCESS})
     } catch (err) {

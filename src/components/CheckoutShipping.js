@@ -1,11 +1,11 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addCheckoutAddress, addTemporaryAddress, getUser} from "../actions/userActions";
+import {addTemporaryAddress, getUser} from "../actions/userActions";
 import Header from "./Header";
-import {ADD_CHECKOUT_ADDRESS, RESET_TEMPORARY_ADDRESS_STATE, RESET_USER_INFO} from "../constants/userConstants";
-import {Box, Button, Container, Divider, Grid, MenuItem, Select, TextField} from "@mui/material";
-import {ArrowBackIosNew, Save, ShoppingBasket, ShoppingCart} from "@mui/icons-material";
-import HomeBasket from "./HomeBasket";
+import {RESET_TEMPORARY_ADDRESS_STATE, RESET_USER_INFO} from "../constants/userConstants";
+import {Button, Container, Divider, Grid, TextField} from "@mui/material";
+import {ArrowBackIosNew, Save} from "@mui/icons-material";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const CheckoutShipping = ({history}) => {
 
@@ -30,10 +30,6 @@ const CheckoutShipping = ({history}) => {
         county: '',
         country: ''
     })
-
-    useEffect(() => {
-        console.log("userinfo in shipping", userInfo)
-    }, [userInfo])
 
     useEffect(() => {
         // check if user has access
@@ -78,8 +74,8 @@ const CheckoutShipping = ({history}) => {
         }
 
         dispatch({type: RESET_TEMPORARY_ADDRESS_STATE})
-        // we need to reset the user info because in the confirm step we check for userInfo.checkoutAddress. If userInfo already exists in redux,
-        // it won't have a checkout address and we therefore get redirected to this screen
+        // we need to reset the user info because in the confirm step we check for userInfo.checkoutAddress.
+        // If userInfo already exists in redux, it won't have a checkout address and we therefore get redirected to this screen
         dispatch({type: RESET_USER_INFO})
     }, [addTemporaryAddressSuccess])
 
@@ -97,13 +93,10 @@ const CheckoutShipping = ({history}) => {
 
                 <Grid container sx={{height: '25vh'}}>
                     <Header history={history}/>
-                    {/*<Container sx={{display: 'flex', alignItems: 'center', marginX: '25px', paddingY: '20px'}}>*/}
-                    {/*</Container>*/}
                 </Grid>
                 <Divider variant="middle"/>
 
-                {addTemporaryAddressLoading ? <span>Saving the checkout address!</span> : addTemporaryAddressError ?
-                    <span>{addTemporaryAddressError}</span>
+                {loading ? <span>Loading your details!</span> : error ? <span>{error}</span>
                     :
                     <Grid container sx={{height: '75vh', paddingTop: '25px'}}>
                         <Grid item xs={3}>
@@ -116,7 +109,8 @@ const CheckoutShipping = ({history}) => {
                             </Container>
                         </Grid>
                         <Grid item xs={6}>
-                            <Container maxWidth="md" sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
+                            <Container maxWidth="md"
+                                       sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
                                 <span style={styles.subtitle}>Add Shipping Address</span>
 
                                 <TextField type="text" label="Address" sx={{width: '90%', marginY: '10px'}}
@@ -133,7 +127,8 @@ const CheckoutShipping = ({history}) => {
                                            value={payload.city}
                                            required
                                            onChange={(e) => editPayload(e)}/>
-                                <TextField type="text" label="County" sx={{width: '90%', marginY: '10px'}} name="county"
+                                <TextField type="text" label="County" sx={{width: '90%', marginY: '10px'}}
+                                           name="county"
                                            value={payload.county}
                                            required
                                            onChange={(e) => editPayload(e)}/>
@@ -143,20 +138,28 @@ const CheckoutShipping = ({history}) => {
                                            value={payload.country}
                                            onChange={(e) => editPayload(e)}/>
                                 <Grid sx={{...styles.checkoutButtonGrid}}>
-                                    <Button variant='outlined' color="success" size="large" sx={styles.checkoutButton}
-                                            startIcon={<Save/>} onClick={(e) => submit(e)}
-                                            disabled={!payload.address || !payload.city || !payload.postCode || !payload.county || !payload.country}
+                                    <LoadingButton variant='outlined' color="success" size="large"
+                                                   loading={addTemporaryAddressLoading}
+                                                   sx={styles.checkoutButton}
+                                                   startIcon={<Save/>} onClick={(e) => submit(e)}
+                                                   disabled={!payload.address || !payload.city || !payload.postCode || !payload.county || !payload.country}
                                     >
                                         Confirm
-                                    </Button>
+                                    </LoadingButton>
                                 </Grid>
+                                {addTemporaryAddressError &&
+                                <span style={{
+                                    fontSize: '20px',
+                                    color: 'red',
+                                    letterSpacing: '1px',
+                                    marginTop: 10,
+                                    textAlign: 'center'
+                                }}>{addTemporaryAddressError}</span>}
                             </Container>
                         </Grid>
                         <Grid item xs={3}/>
                     </Grid>
-
                 }
-
             </Grid>
         </Grid>
     )

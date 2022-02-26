@@ -1,6 +1,6 @@
 import {Button, Grid} from "@mui/material";
 import logo from "../assets/logo.png";
-import {Fragment, useEffect} from "react";
+import {Fragment} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../actions/userActions";
@@ -17,9 +17,6 @@ const Header = ({history}) => {
         dispatch(logout())
         history.push("/")
     }
-
-
-    // TODO - have to click on the account text to go to account instead of clicking on the box padding currently
 
     return (
         <Fragment>

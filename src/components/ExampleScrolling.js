@@ -1,5 +1,4 @@
 import {Grid} from "@mui/material";
-import React from "react";
 
 const ExampleScrolling = () => {
     return (
@@ -8,54 +7,38 @@ const ExampleScrolling = () => {
         }}>
             <Grid item sx={{backgroundColor: 'red', height: '100vh', overflowY: 'auto'}} xs={6}>
                 <Grid sx={{position: 'relative'}}>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-                    <div>Hello</div>
-
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
+                    <div>Test</div>
                 </Grid>
             </Grid>
             <Grid item sx={{backgroundColor: 'blue', height: '100vh'}} xs={6}>Grid 2</Grid>

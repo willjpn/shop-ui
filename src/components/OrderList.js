@@ -11,7 +11,7 @@ const OrderList = ({history}) => {
     const {loading: ordersLoading, error: ordersError, orders} = useSelector(state => state.orders)
 
     const removeOrderState = useSelector(state => state.removeOrder)
-    const {loading: removeOrderLoading, error: removeOrderError, success} = removeOrderState
+    const {loading: removeOrderLoading, error: removeOrderError} = removeOrderState
 
 
     const {loading: userLoading, error: userError, userInfo} = userDetails

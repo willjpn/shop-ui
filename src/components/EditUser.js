@@ -3,6 +3,7 @@ import {fetchEditUser, getUser, updateUser} from "../actions/userActions";
 import {useDispatch, useSelector} from "react-redux";
 import Header from "./Header";
 import {UPDATE_USER_RESET} from "../constants/userConstants";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const EditUser = ({match, history}) => {
 
@@ -22,13 +23,12 @@ const EditUser = ({match, history}) => {
     const [lastName, setLastName] = useState("")
     const [isAdmin, setIsAdmin] = useState(false)
 
-    // first thing to do is check for admin access
 
     useEffect(() => {
-        // check if user has admin rights
         dispatch(getUser())
     }, [dispatch])
 
+    //
     useEffect(() => {
         if (userInfo._id && !userInfo.isAdmin) {
             history.push("/")
@@ -79,7 +79,6 @@ const EditUser = ({match, history}) => {
                 : userError ? <h2>An error has occurred whilst fetching user information</h2>
                     : updateUserLoading ? <h2>Updating user's information</h2>
                         : updateUserError ? <h2>An error has occurred whilst updating the user</h2>
-                            : editUserLoading ? <h2>Loading the user to edit</h2>
                                 : editUserError ? <h2>An error has occurred whilst fetching the user to edit</h2>
                                     :
                                     <div>
@@ -100,10 +99,18 @@ const EditUser = ({match, history}) => {
                                                        onChange={(e) => setIsAdmin(e.target.checked)}/>
                                             </div>
                                             <div>
-                                                <button onClick={e => submitUser(e)}>
+                                                <LoadingButton onClick={e => submitUser(e)} loading={editUserLoading}>
                                                     Submit
-                                                </button>
+                                                </LoadingButton>
                                             </div>
+                                            {editUserError &&
+                                            <span style={{
+                                                fontSize: '20px',
+                                                color: 'red',
+                                                letterSpacing: '1px',
+                                                marginTop: 10,
+                                                textAlign: 'center'
+                                            }}>{editUserError}</span>}
                                         </form>
                                     </div>
             }

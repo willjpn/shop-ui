@@ -9,11 +9,9 @@ import {
 export const authReducer = (state = {}, action) => {
     switch (action.type) {
         case SET_ACCESS_TOKEN:
-            console.log("case is reached")
-            console.log("action.payload", action.payload)
             return {token: action.payload}
         case REFRESH_FAILURE:
-            return {...state, refreshFailed: true}
+            return {...state, refreshFailed: true, error: action.payload}
         default:
             return state
     }

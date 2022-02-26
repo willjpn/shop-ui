@@ -4,9 +4,9 @@ import {useDispatch, useSelector} from "react-redux";
 import Header from "./Header";
 import {ADD_PRODUCT_RESET} from "../constants/productConstants";
 import {addProduct} from "../actions/productActions";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const NewProduct = ({history}) => {
-
 
     const userDetails = useSelector(state => state.userDetails)
     const addNewProduct = useSelector(state => state.addProduct)
@@ -27,8 +27,6 @@ const NewProduct = ({history}) => {
 
     const [file, setFile] = useState()
 
-
-
     const editPayload = (e) => {
         setPayload(prevState => {
             return {
@@ -46,10 +44,8 @@ const NewProduct = ({history}) => {
         }
     }, [refreshFailed])
 
-    // first thing to do is check for admin access
 
     useEffect(() => {
-        // check if user has admin rights
         dispatch(getUser())
     }, [dispatch])
 
@@ -119,10 +115,18 @@ const NewProduct = ({history}) => {
                                     </div>
 
                                     <div>
-                                        <button onClick={(e) => submitProduct(e)}>
+                                        <LoadingButton onClick={(e) => submitProduct(e)} loading={addProductLoading}>
                                             Submit
-                                        </button>
+                                        </LoadingButton>
                                     </div>
+                                    {addProductError &&
+                                    <span style={{
+                                        fontSize: '20px',
+                                        color: 'red',
+                                        letterSpacing: '1px',
+                                        marginTop: 10,
+                                        textAlign: 'center'
+                                    }}>{addProductError}</span>}
                                 </form>
                             </div>
 

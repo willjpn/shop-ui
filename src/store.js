@@ -61,9 +61,6 @@ const reducer = combineReducers({
     getClientId: getClientIdReducer
 })
 
-// TODO- we use cookies fyi / PAGINATION / AUTOCOMPLETE DELIVERY ADDRESS
-
-//
 const localStorageBasket = localStorage.getItem("basket") ? JSON.parse(localStorage.getItem("basket")) : []
 
 

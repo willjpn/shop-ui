@@ -3,6 +3,7 @@ import {createUser, getUser} from "../actions/userActions";
 import {useDispatch, useSelector} from "react-redux";
 import Header from "./Header";
 import {ADD_USER_RESET} from "../constants/userConstants";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const NewProduct = ({history}) => {
 
@@ -40,10 +41,7 @@ const NewProduct = ({history}) => {
         }
     }, [refreshFailed])
 
-    // first thing to do is check for admin access
-
     useEffect(() => {
-        // check if user has admin rights
         dispatch(getUser())
     }, [dispatch])
 
@@ -76,42 +74,49 @@ const NewProduct = ({history}) => {
             <h2>Create A New User</h2>
             {userLoading ? <h2>Loading user information</h2>
                 : userError ? <h2>An error has occurred whilst fetching user information</h2>
-                    : addUserLoading ? <h2>Creating new user</h2>
-                        : addUserError ? <h2>Unable to create a new user</h2> :
+                    : <div>
+                        <form>
                             <div>
-                                <form>
-                                    <div>
-                                        <label htmlFor="firstName">First Name:</label>
-                                        <input type="text" id="firstName" name="firstName"
-                                               onChange={(e) => editPayload(e)}/>
-                                    </div>
-                                    <div>
-                                        <label htmlFor="lastName">Last Name:</label>
-                                        <input type="text" id="lastName" name="lastName"
-                                               onChange={(e) => editPayload(e)}/>
-                                    </div>
-                                    <div>
-                                        <label htmlFor="email">Email Address:</label>
-                                        <input type="email" id="email" name="email"
-                                               onChange={(e) => editPayload(e)}/>
-                                    </div>
-                                    <div>
-                                        <label htmlFor="password">Password:</label>
-                                        <input type="password" id="password" name="password"
-                                               onChange={(e) => editPayload(e)}/>
-                                    </div>
-                                    <div>
-                                        <label htmlFor="isAdmin">Admin:</label>
-                                        <input type="checkbox" id="isAdmin" name="isAdmin" checked={isAdmin}
-                                               onChange={(e) => setIsAdmin(e.target.checked)}/>
-                                    </div>
-                                    <div>
-                                        <button onClick={(e) => submitUser(e)}>
-                                            Submit
-                                        </button>
-                                    </div>
-                                </form>
+                                <label htmlFor="firstName">First Name:</label>
+                                <input type="text" id="firstName" name="firstName"
+                                       onChange={(e) => editPayload(e)}/>
                             </div>
+                            <div>
+                                <label htmlFor="lastName">Last Name:</label>
+                                <input type="text" id="lastName" name="lastName"
+                                       onChange={(e) => editPayload(e)}/>
+                            </div>
+                            <div>
+                                <label htmlFor="email">Email Address:</label>
+                                <input type="email" id="email" name="email"
+                                       onChange={(e) => editPayload(e)}/>
+                            </div>
+                            <div>
+                                <label htmlFor="password">Password:</label>
+                                <input type="password" id="password" name="password"
+                                       onChange={(e) => editPayload(e)}/>
+                            </div>
+                            <div>
+                                <label htmlFor="isAdmin">Admin:</label>
+                                <input type="checkbox" id="isAdmin" name="isAdmin" checked={isAdmin}
+                                       onChange={(e) => setIsAdmin(e.target.checked)}/>
+                            </div>
+                            <div>
+                                <LoadingButton onClick={(e) => submitUser(e)} loading={addUserLoading}>
+                                    Submit
+                                </LoadingButton>
+                            </div>
+                        </form>
+                        {addUserError &&
+                        <span style={{
+                            fontSize: '20px',
+                            color: 'red',
+                            letterSpacing: '1px',
+                            marginTop: 10,
+                            textAlign: 'center'
+                        }}>{addUserError}</span>}
+                    </div>
+
             }
         </Fragment>
     )

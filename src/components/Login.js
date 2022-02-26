@@ -39,7 +39,7 @@ const Login = ({history, location}) => {
             alignItems: 'flex-start',
         }}>
 
-            <Grid xs={12} sx={{overflowY: 'auto'}}>
+            <Grid item xs={12} sx={{overflowY: 'auto'}}>
 
                 <Grid container sx={{height: '25vh'}}>
                     <Header history={history}/>

@@ -43,10 +43,7 @@ const UserTable = ({users, dispatch, history}) => {
                     ))}
                     </tbody>
                 </table>}
-
         </Fragment>
-
-
     )
 }
 

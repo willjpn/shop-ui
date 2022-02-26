@@ -3,14 +3,16 @@ import {LOGIN_SUCCESS} from "../constants/userConstants";
 import {
     GET_CLIENT_ID_FAILURE,
     GET_CLIENT_ID_REQUEST,
-    GET_CLIENT_ID_SUCCESS,
+    GET_CLIENT_ID_SUCCESS, REFRESH_FAILURE,
     SET_ACCESS_TOKEN
 } from "../constants/authConstants";
 import {ErrorMessage} from "../utils/errorHandler";
 
 export const refreshToken = () => async (dispatch) => {
     try {
-        const response = await axios.get("http://localhost:8000/admin/refreshToken")
+        const response = await axios.get("/admin/refreshToken")
+
+        console.log("response.data access and userinfo", response.data)
 
         const {userInfo, accessToken} = response.data
 
@@ -18,7 +20,7 @@ export const refreshToken = () => async (dispatch) => {
         dispatch({type: SET_ACCESS_TOKEN, payload: accessToken})
 
     } catch (err) {
-        console.error(err.message)
+        dispatch({type: REFRESH_FAILURE, payload: new ErrorMessage(err).message})
     }
 }
 
@@ -26,8 +28,7 @@ export const getClientId = () => async (dispatch) => {
     try {
         dispatch({type: GET_CLIENT_ID_REQUEST})
 
-        const response = await axios.get("http://localhost:8000/paypal")
-        console.log("response.data", response.data)
+        const response = await axios.get("/paypal")
 
         dispatch({type: GET_CLIENT_ID_SUCCESS, payload: response.data})
     } catch (err) {
