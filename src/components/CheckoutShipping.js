@@ -5,7 +5,7 @@ import Header from "./Header";
 import {RESET_TEMPORARY_ADDRESS_STATE, RESET_USER_INFO} from "../constants/userConstants";
 import {Button, Container, Divider, Grid, TextField} from "@mui/material";
 import {ArrowBackIosNew, Save} from "@mui/icons-material";
-import LoadingButton from "@mui/lab/LoadingButton";
+// import LoadingButton from "@mui/lab/LoadingButton";
 
 const CheckoutShipping = ({history}) => {
 
@@ -138,14 +138,21 @@ const CheckoutShipping = ({history}) => {
                                            value={payload.country}
                                            onChange={(e) => editPayload(e)}/>
                                 <Grid sx={{...styles.checkoutButtonGrid}}>
-                                    <LoadingButton variant='outlined' color="success" size="large"
-                                                   loading={addTemporaryAddressLoading}
+                                    {/*<LoadingButton variant='outlined' color="success" size="large"*/}
+                                    {/*               loading={addTemporaryAddressLoading}*/}
+                                    {/*               sx={styles.checkoutButton}*/}
+                                    {/*               startIcon={<Save/>} onClick={(e) => submit(e)}*/}
+                                    {/*               disabled={!payload.address || !payload.city || !payload.postCode || !payload.county || !payload.country}*/}
+                                    {/*>*/}
+                                    {/*    Confirm*/}
+                                    {/*</LoadingButton>*/}
+                                    <Button variant='outlined' color="success" size="large"
                                                    sx={styles.checkoutButton}
                                                    startIcon={<Save/>} onClick={(e) => submit(e)}
                                                    disabled={!payload.address || !payload.city || !payload.postCode || !payload.county || !payload.country}
                                     >
                                         Confirm
-                                    </LoadingButton>
+                                    </Button>
                                 </Grid>
                                 {addTemporaryAddressError &&
                                 <span style={{

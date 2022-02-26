@@ -4,7 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import Header from "./Header";
 import {ADD_PRODUCT_RESET} from "../constants/productConstants";
 import {addProduct} from "../actions/productActions";
-import LoadingButton from "@mui/lab/LoadingButton";
+// import LoadingButton from "@mui/lab/LoadingButton";
+import {Button} from "@mui/material";
 
 const NewProduct = ({history}) => {
 
@@ -115,9 +116,12 @@ const NewProduct = ({history}) => {
                                     </div>
 
                                     <div>
-                                        <LoadingButton onClick={(e) => submitProduct(e)} loading={addProductLoading}>
+                                        {/*<LoadingButton onClick={(e) => submitProduct(e)} loading={addProductLoading}>*/}
+                                        {/*    Submit*/}
+                                        {/*</LoadingButton>*/}
+                                        <Button onClick={(e) => submitProduct(e)} loading={addProductLoading}>
                                             Submit
-                                        </LoadingButton>
+                                        </Button>
                                     </div>
                                     {addProductError &&
                                     <span style={{

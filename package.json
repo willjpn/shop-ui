@@ -53,7 +53,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@mui/lab": "^5.0.0-alpha.69"
-  }
+  "devDependencies": {}
 }

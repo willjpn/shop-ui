@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {createNewUser} from "../actions/userActions";
 import {Button, Container, Divider, Grid, TextField} from "@mui/material";
 import {ArrowBackIosNew, Save} from "@mui/icons-material";
-import LoadingButton from '@mui/lab/LoadingButton';
+// import LoadingButton from '@mui/lab/LoadingButton';
 
 
 const Signup = ({history}) => {
@@ -101,14 +101,21 @@ const Signup = ({history}) => {
                                        required
                                        onChange={(e) => editPayload(e)}/>
                             <Grid sx={{...styles.checkoutButtonGrid}}>
-                                <LoadingButton variant='outlined' color="success" size="large"
+                                {/*<LoadingButton variant='outlined' color="success" size="large"*/}
+                                {/*               sx={styles.checkoutButton}*/}
+                                {/*               startIcon={<Save/>} onClick={(e) => submitHandler(e)}*/}
+                                {/*               loading={loading}*/}
+                                {/*               disabled={!payload.firstName || !payload.lastName || !payload.email || !payload.password}*/}
+                                {/*>*/}
+                                {/*    Signup*/}
+                                {/*</LoadingButton>*/}
+                                <Button variant='outlined' color="success" size="large"
                                                sx={styles.checkoutButton}
                                                startIcon={<Save/>} onClick={(e) => submitHandler(e)}
-                                               loading={loading}
                                                disabled={!payload.firstName || !payload.lastName || !payload.email || !payload.password}
                                 >
                                     Signup
-                                </LoadingButton>
+                                </Button>
                                 <Button variant="text" color="primary" sx={{
                                     marginTop: '20px', marginBottom: '30px',textDecoration: 'none',
                                     color: 'black',

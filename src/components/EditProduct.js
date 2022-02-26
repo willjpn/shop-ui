@@ -4,7 +4,7 @@ import {editProduct, fetchProduct} from "../actions/productActions";
 import {useDispatch, useSelector} from "react-redux";
 import Header from "./Header";
 import {EDIT_PRODUCT_RESET} from "../constants/productConstants";
-import LoadingButton from "@mui/lab/LoadingButton";
+// import LoadingButton from "@mui/lab/LoadingButton";
 
 const EditProduct = ({match, history}) => {
 
@@ -89,9 +89,12 @@ const EditProduct = ({match, history}) => {
                                                        onChange={(e) => setPrice(e.target.value)}/>
                                             </div>
                                             <div>
-                                                <LoadingButton onClick={submitProduct} loading={editProductLoading}>
+                                                {/*<LoadingButton onClick={submitProduct} loading={editProductLoading}>*/}
+                                                {/*    Submit*/}
+                                                {/*</LoadingButton>*/}
+                                                <Button onClick={submitProduct}>
                                                     Submit
-                                                </LoadingButton>
+                                                </Button>
                                             </div>
                                             {editProductError &&
                                             <span style={{

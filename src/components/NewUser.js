@@ -3,7 +3,8 @@ import {createUser, getUser} from "../actions/userActions";
 import {useDispatch, useSelector} from "react-redux";
 import Header from "./Header";
 import {ADD_USER_RESET} from "../constants/userConstants";
-import LoadingButton from "@mui/lab/LoadingButton";
+// import LoadingButton from "@mui/lab/LoadingButton";
+import {Button} from "@mui/material";
 
 const NewProduct = ({history}) => {
 
@@ -102,9 +103,12 @@ const NewProduct = ({history}) => {
                                        onChange={(e) => setIsAdmin(e.target.checked)}/>
                             </div>
                             <div>
-                                <LoadingButton onClick={(e) => submitUser(e)} loading={addUserLoading}>
+                                {/*<LoadingButton onClick={(e) => submitUser(e)} loading={addUserLoading}>*/}
+                                {/*    Submit*/}
+                                {/*</LoadingButton>*/}
+                                <Button onClick={(e) => submitUser(e)} >
                                     Submit
-                                </LoadingButton>
+                                </Button>
                             </div>
                         </form>
                         {addUserError &&

@@ -2,9 +2,9 @@ import React, {Fragment, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {resetPassword} from "../actions/userActions";
 import {SET_DEFAULT_PASSWORD_RESET} from "../constants/userConstants";
-import {Grid, TextField} from "@mui/material";
+import {Button, Grid, TextField} from "@mui/material";
 import {Save} from "@mui/icons-material";
-import LoadingButton from "@mui/lab/LoadingButton";
+// import LoadingButton from "@mui/lab/LoadingButton";
 
 const ResetPassword = () => {
 
@@ -47,14 +47,21 @@ const ResetPassword = () => {
                            onChange={(e) => setRepeatPassword(e.target.value)}
                            sx={{width: '90%', marginY: '10px'}}/>
                 <Grid style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
-                    <LoadingButton variant='outlined' color="success" size="large"
+                    {/*<LoadingButton variant='outlined' color="success" size="large"*/}
+                    {/*               sx={{marginY: '15px', paddingY: '5px'}}*/}
+                    {/*               loading={loading}*/}
+                    {/*               startIcon={<Save/>} onClick={(e) => submit(e)}*/}
+                    {/*               disabled={!originalPassword || !newPassword || !repeatPassword}*/}
+                    {/*>*/}
+                    {/*    Reset Password*/}
+                    {/*</LoadingButton>*/}
+                    <Button variant='outlined' color="success" size="large"
                                    sx={{marginY: '15px', paddingY: '5px'}}
-                                   loading={loading}
                                    startIcon={<Save/>} onClick={(e) => submit(e)}
                                    disabled={!originalPassword || !newPassword || !repeatPassword}
                     >
                         Reset Password
-                    </LoadingButton>
+                    </Button>
                 </Grid>
                 {passwordReset &&
                 <span style={{

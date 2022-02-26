@@ -3,7 +3,7 @@ import {fetchEditUser, getUser, updateUser} from "../actions/userActions";
 import {useDispatch, useSelector} from "react-redux";
 import Header from "./Header";
 import {UPDATE_USER_RESET} from "../constants/userConstants";
-import LoadingButton from "@mui/lab/LoadingButton";
+// import LoadingButton from "@mui/lab/LoadingButton";
 
 const EditUser = ({match, history}) => {
 
@@ -99,9 +99,12 @@ const EditUser = ({match, history}) => {
                                                        onChange={(e) => setIsAdmin(e.target.checked)}/>
                                             </div>
                                             <div>
-                                                <LoadingButton onClick={e => submitUser(e)} loading={editUserLoading}>
+                                                {/*<LoadingButton onClick={e => submitUser(e)} loading={editUserLoading}>*/}
+                                                {/*    Submit*/}
+                                                {/*</LoadingButton>*/}
+                                                <Button onClick={e => submitUser(e)}>
                                                     Submit
-                                                </LoadingButton>
+                                                </Button>
                                             </div>
                                             {editUserError &&
                                             <span style={{

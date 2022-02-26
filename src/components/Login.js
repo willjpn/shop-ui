@@ -5,7 +5,7 @@ import {login} from "../actions/userActions";
 import {useEffect} from "react";
 import {Button, Container, Divider, Grid, TextField} from "@mui/material";
 import {ArrowBackIosNew, Save} from "@mui/icons-material";
-import LoadingButton from "@mui/lab/LoadingButton";
+// import LoadingButton from "@mui/lab/LoadingButton";
 
 const Login = ({history, location}) => {
 
@@ -79,14 +79,21 @@ const Login = ({history, location}) => {
                                        required
                                        onChange={(e) => setPassword(e.target.value)}/>
                             <Grid sx={{...styles.checkoutButtonGrid}}>
-                                <LoadingButton variant='outlined' color="success" size="large"
+                                {/*<LoadingButton variant='outlined' color="success" size="large"*/}
+                                {/*               sx={styles.checkoutButton}*/}
+                                {/*               startIcon={<Save/>} onClick={(e) => submit(e)}*/}
+                                {/*               loading={loading}*/}
+                                {/*               disabled={!username || !password}*/}
+                                {/*>*/}
+                                {/*    Login*/}
+                                {/*</LoadingButton>*/}
+                                <Button variant='outlined' color="success" size="large"
                                                sx={styles.checkoutButton}
                                                startIcon={<Save/>} onClick={(e) => submit(e)}
-                                               loading={loading}
                                                disabled={!username || !password}
                                 >
                                     Login
-                                </LoadingButton>
+                                </Button>
                                 <Button variant="text" color="primary" sx={{
                                     marginTop: '20px', marginBottom: '30px',textDecoration: 'none',
                                     color: 'black',
