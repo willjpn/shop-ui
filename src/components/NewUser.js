@@ -3,8 +3,7 @@ import {createUser, getUser} from "../actions/userActions";
 import {useDispatch, useSelector} from "react-redux";
 import Header from "./Header";
 import {ADD_USER_RESET} from "../constants/userConstants";
-// import LoadingButton from "@mui/lab/LoadingButton";
-import {Button} from "@mui/material";
+import {LoadingButton} from "@mui/lab";
 
 const NewProduct = ({history}) => {
 
@@ -40,7 +39,7 @@ const NewProduct = ({history}) => {
         if (refreshFailed) {
             history.push(`/login?redirect=user/new`)
         }
-    }, [refreshFailed])
+    }, [refreshFailed, history])
 
     useEffect(() => {
         dispatch(getUser())
@@ -103,12 +102,9 @@ const NewProduct = ({history}) => {
                                        onChange={(e) => setIsAdmin(e.target.checked)}/>
                             </div>
                             <div>
-                                {/*<LoadingButton onClick={(e) => submitUser(e)} loading={addUserLoading}>*/}
-                                {/*    Submit*/}
-                                {/*</LoadingButton>*/}
-                                <Button onClick={(e) => submitUser(e)} >
+                                <LoadingButton onClick={(e) => submitUser(e)} loading={addUserLoading}>
                                     Submit
-                                </Button>
+                                </LoadingButton>
                             </div>
                         </form>
                         {addUserError &&

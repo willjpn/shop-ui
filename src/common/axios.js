@@ -21,7 +21,6 @@ const refreshToken = async (config) => {
     if (!fetchingAccessToken) {
         try {
             fetchingAccessToken = true
-            console.log("refreshing token")
             const response = await axios.get("/admin/refreshToken")
 
             alreadyRetriedRefresh = true
@@ -36,7 +35,6 @@ const refreshToken = async (config) => {
             fetchingAccessToken = false
             return request
         } catch (error) {
-            console.log("error.response", error.response)
             store.dispatch({type: REFRESH_FAILURE, payload: new ErrorMessage(error).message})
             subscribers = []
             return Promise.reject(error)
@@ -91,10 +89,8 @@ axios.interceptors.response.use(function (response) {
     // runs when 2XX status code
     return response
 }, function (error) {
-    console.log("error", error.response)
     // if 401 / invalid access token
     if (error.response.status === 401) {
-        console.log("401")
         return refreshToken(error.response.config)
     }
 

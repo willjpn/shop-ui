@@ -22,7 +22,7 @@ const UserList = ({history}) => {
         if (refreshFailed) {
             history.push(`/login?redirect=user-list`)
         }
-    }, [refreshFailed])
+    }, [refreshFailed, history])
 
     useEffect(() => {
         // check if user has admin rights

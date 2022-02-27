@@ -23,13 +23,11 @@ import OrderList from "./components/OrderList";
 function App() {
 
     // TODO - add cookie consent
-
     const dispatch = useDispatch()
 
     useEffect(() => {
-        console.log("refresh in app.js")
         dispatch(refreshToken())
-    }, [])
+    }, [dispatch])
 
     return (
         <Switch>

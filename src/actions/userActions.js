@@ -52,7 +52,6 @@ export const login = (email, password) => async (dispatch) => {
 
         const response = await axios.post("/user/login", {email, password})
         const {userInfo, accessToken} = response.data
-        console.log("renfjse", response.data)
 
         dispatch({type: LOGIN_SUCCESS, payload: userInfo})
 

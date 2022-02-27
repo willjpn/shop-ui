@@ -40,7 +40,7 @@ const ProductList = ({history}) => {
         if (refreshFailed) {
             history.push(`/login?redirect=product-list`)
         }
-    }, [refreshFailed])
+    }, [refreshFailed, history])
     return (
         <Fragment>
             <Header history={history}/>

@@ -20,15 +20,12 @@ import {
     usersReducer
 } from "./reducers/userReducer";
 import {basketReducer} from "./reducers/basketReducer";
-import {queryProducts} from "./actions/productActions";
 import {
     createOrderReducer,
     getOrderReducer,
-    getOrdersReducer,
     ordersReducer,
     payOrderReducer, removeOrderReducer
 } from "./reducers/orderReducer";
-import {addTemporaryAddress} from "./actions/userActions";
 
 const reducer = combineReducers({
     basket: basketReducer,

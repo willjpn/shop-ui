@@ -1,9 +1,9 @@
-import {Button, Grid, TextField} from "@mui/material";
+import { Grid, TextField} from "@mui/material";
 import {Save} from "@mui/icons-material";
 import {Fragment, useEffect, useState} from "react";
 import {editUserDetails} from "../actions/userActions";
 import {useDispatch, useSelector} from "react-redux";
-// import LoadingButton from "@mui/lab/LoadingButton";
+import {LoadingButton} from "@mui/lab";
 
 const EditUserDetails = ({userInfo}) => {
 
@@ -67,25 +67,16 @@ const EditUserDetails = ({userInfo}) => {
                                value={payload.email}
                                onChange={(e) => editPayload(e)}/>
                     <Grid style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
-                        {/*<LoadingButton variant='outlined' color="success" size="large" onClick={(e) => {*/}
-                        {/*    submit(e)*/}
-                        {/*}}*/}
-                        {/*               sx={{ marginY: '15px', paddingY: '5px'}}*/}
-                        {/*               loading={loading}*/}
-                        {/*               startIcon={<Save/>}*/}
-                        {/*               disabled={!payload.firstName || !payload.lastName || !payload.email}*/}
-                        {/*>*/}
-                        {/*    Save Changes*/}
-                        {/*</LoadingButton>*/}
-                        <Button variant='outlined' color="success" size="large" onClick={(e) => {
+                        <LoadingButton variant='outlined' color="success" size="large" onClick={(e) => {
                             submit(e)
                         }}
                                        sx={{ marginY: '15px', paddingY: '5px'}}
+                                       loading={loading}
                                        startIcon={<Save/>}
                                        disabled={!payload.firstName || !payload.lastName || !payload.email}
                         >
                             Save Changes
-                        </Button>
+                        </LoadingButton>
                     </Grid>
 
                     {success && <span style={{

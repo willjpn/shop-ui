@@ -29,13 +29,13 @@ const UserProfile = ({history}) => {
             // once we have userInfo, fetch user's orders
             dispatch(fetchUserOrders())
         }
-    }, [userInfo])
+    }, [userInfo, dispatch])
 
     useEffect(() => {
         if (refreshFailed) {
             history.push("/login?redirect=user-profile")
         }
-    }, [refreshFailed])
+    }, [refreshFailed, history])
 
     const [alignment, setAlignment] = useState('user');
 

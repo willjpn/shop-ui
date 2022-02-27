@@ -40,7 +40,7 @@ const CheckoutConfirm = ({history}) => {
             history.push("/login?redirect=checkout/confirm")
         }
 
-    }, [refreshFailed])
+    }, [refreshFailed, history])
 
     // this is to check if an address was submitted in previous step. If not, go back to shipping step
     useEffect(() => {
@@ -51,7 +51,7 @@ const CheckoutConfirm = ({history}) => {
                 setAddress(userInfo.checkoutAddress)
             }
         }
-    }, [userInfo])
+    }, [userInfo, history])
 
     useEffect(() => {
         if (success) {
@@ -60,7 +60,7 @@ const CheckoutConfirm = ({history}) => {
             history.push(`/orders/${order._id}`)
             dispatch({type: RESET_CREATE_ORDER_STATE})
         }
-    }, [success])
+    }, [success, history, order, dispatch])
 
     useEffect(() => {
         if (!basket.length) {
@@ -75,7 +75,7 @@ const CheckoutConfirm = ({history}) => {
             setVat((reduced / 5).toFixed(2).toString())
             setTotal((reduced * 1.2).toFixed(2).toString())
         }
-    }, [basket])
+    }, [basket, history])
 
     const submitOrder = (e) => {
 
@@ -178,7 +178,7 @@ const CheckoutConfirm = ({history}) => {
                                                         <Grid item xs={4} sx={{
                                                             alignItems: 'center',
                                                             display: 'flex', letterSpacing: '1px',
-                                                        }}>{item.quantity + " x " + "£" + item.product.price + " = " + "£" + item.quantity * item.product.price}</Grid>
+                                                        }}>{`${item.quantity} + " x " + "£" + ${item.product.price} + " = " + "£" + ${item.quantity * item.product.price}`}</Grid>
                                                         <Grid xs={2}/>
                                                     </Grid>
                                                     <Divider variant="middle" sx={{color: 'lightgrey'}}/>

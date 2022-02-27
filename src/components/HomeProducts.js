@@ -19,7 +19,6 @@ const HomeProducts = ({products, query, showPrice, showImage, dispatch, history}
     }
 
     const seeProductDetails = (id) => {
-        console.log("id", id)
         history.push(`/product/${id}`)
     }
 

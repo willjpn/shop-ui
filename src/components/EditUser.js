@@ -3,8 +3,7 @@ import {fetchEditUser, getUser, updateUser} from "../actions/userActions";
 import {useDispatch, useSelector} from "react-redux";
 import Header from "./Header";
 import {UPDATE_USER_RESET} from "../constants/userConstants";
-import {Button} from "@mui/material";
-// import LoadingButton from "@mui/lab/LoadingButton";
+import {LoadingButton} from "@mui/lab";
 
 const EditUser = ({match, history}) => {
 
@@ -29,7 +28,6 @@ const EditUser = ({match, history}) => {
         dispatch(getUser())
     }, [dispatch])
 
-    //
     useEffect(() => {
         if (userInfo._id && !userInfo.isAdmin) {
             history.push("/")
@@ -62,7 +60,7 @@ const EditUser = ({match, history}) => {
         if (refreshFailed) {
             history.push(`/login?redirect=user/edit/${id}`)
         }
-    }, [refreshFailed])
+    }, [refreshFailed, history, id])
 
     useEffect(() => {
         if (success) {
@@ -100,12 +98,9 @@ const EditUser = ({match, history}) => {
                                                        onChange={(e) => setIsAdmin(e.target.checked)}/>
                                             </div>
                                             <div>
-                                                {/*<LoadingButton onClick={e => submitUser(e)} loading={editUserLoading}>*/}
-                                                {/*    Submit*/}
-                                                {/*</LoadingButton>*/}
-                                                <Button onClick={e => submitUser(e)}>
+                                                <LoadingButton onClick={e => submitUser(e)} loading={editUserLoading}>
                                                     Submit
-                                                </Button>
+                                                </LoadingButton>
                                             </div>
                                             {editUserError &&
                                             <span style={{

@@ -31,8 +31,6 @@ const OrderOverview = ({match, history}) => {
             setVat(order.vat)
             setExVat(order.exVat)
             setTotal(order.totalPrice)
-        } else {
-            console.log("don't have order")
         }
     }, [order])
 
@@ -49,7 +47,7 @@ const OrderOverview = ({match, history}) => {
         // if all is good, we need to fetch the order itself from the database
         // and then compare the order's user to the user accessing page
         dispatch(getOrder(id))
-    }, [refreshFailed])
+    }, [refreshFailed, history, id, dispatch])
 
     // TODO - make sure prices have 2dp, e.g. £2.50 currently rounds to £2.5
 
@@ -159,7 +157,7 @@ const OrderOverview = ({match, history}) => {
                                                                 <Grid item xs={4} sx={{
                                                                     alignItems: 'center',
                                                                     display: 'flex', letterSpacing: '1px',
-                                                                }}>{item.quantity + " x " + "£" + item.product.price + " = " + "£" + item.quantity * item.product.price}</Grid>
+                                                                }}>{`${item.quantity} + " x " + "£" + ${item.product.price} + " = " + "£" + ${item.quantity * item.product.price}`}</Grid>
                                                                 <Grid xs={2}/>
                                                             </Grid>
                                                             <Divider variant="middle" sx={{color: 'lightgrey'}}/>

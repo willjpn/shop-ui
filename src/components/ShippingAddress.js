@@ -2,9 +2,9 @@ import React, {Fragment, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addAddress} from "../actions/userActions";
 import {SET_DEFAULT_ADDRESS_ADD} from "../constants/userConstants";
-import {Button, Grid, TextField} from "@mui/material";
+import {Grid, TextField} from "@mui/material";
 import {Save} from "@mui/icons-material";
-// import LoadingButton from "@mui/lab/LoadingButton";
+import {LoadingButton} from "@mui/lab";
 
 const ShippingAddress = ({shippingDetails}) => {
 
@@ -74,21 +74,14 @@ const ShippingAddress = ({shippingDetails}) => {
                        value={payload.country}
                        onChange={(e) => editPayload(e)}/>
             <Grid style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
-                {/*<LoadingButton variant='outlined' color="success" size="large"*/}
-                {/*               sx={{marginY: '15px', paddingY: '5px'}}*/}
-                {/*               loading={loading}*/}
-                {/*               startIcon={<Save/>} onClick={(e) => submit(e)}*/}
-                {/*               disabled={!payload.address || !payload.postCode || !payload.city || !payload.county || !payload.country}*/}
-                {/*>*/}
-                {/*    Save Shipping Address*/}
-                {/*</LoadingButton>*/}
-                <Button variant='outlined' color="success" size="large"
+                <LoadingButton variant='outlined' color="success" size="large"
                                sx={{marginY: '15px', paddingY: '5px'}}
+                               loading={loading}
                                startIcon={<Save/>} onClick={(e) => submit(e)}
                                disabled={!payload.address || !payload.postCode || !payload.city || !payload.county || !payload.country}
                 >
                     Save Shipping Address
-                </Button>
+                </LoadingButton>
             </Grid>
             {addressAdded &&
             <span style={{fontSize: '20px', color: 'green', letterSpacing: '1px', marginTop: 10, textAlign: 'center'}}>Your shipping address has been updated!</span>}

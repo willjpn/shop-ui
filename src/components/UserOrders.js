@@ -3,7 +3,6 @@ import {Button, Grid, Table, TableBody, TableCell, TableContainer, TableHead, Ta
 const UserOrders = ({orders, history}) => {
 
     const showOrderDetails = (id) => {
-        console.log("history", history)
         history.push(`/orders/${id}`)
     }
 

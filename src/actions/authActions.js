@@ -12,8 +12,6 @@ export const refreshToken = () => async (dispatch) => {
     try {
         const response = await axios.get("/admin/refreshToken")
 
-        console.log("response.data access and userinfo", response.data)
-
         const {userInfo, accessToken} = response.data
 
         dispatch({type: LOGIN_SUCCESS, payload: userInfo})

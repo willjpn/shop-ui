@@ -24,7 +24,7 @@ const OrderList = ({history}) => {
         if (refreshFailed) {
             history.push(`/login?redirect=order-list`)
         }
-    }, [refreshFailed])
+    }, [refreshFailed, history])
 
     useEffect(() => {
         // check if user has admin rights

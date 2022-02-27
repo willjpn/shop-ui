@@ -5,7 +5,7 @@ import Header from "./Header";
 import {RESET_TEMPORARY_ADDRESS_STATE, RESET_USER_INFO} from "../constants/userConstants";
 import {Button, Container, Divider, Grid, TextField} from "@mui/material";
 import {ArrowBackIosNew, Save} from "@mui/icons-material";
-// import LoadingButton from "@mui/lab/LoadingButton";
+import {LoadingButton} from "@mui/lab";
 
 const CheckoutShipping = ({history}) => {
 
@@ -52,7 +52,7 @@ const CheckoutShipping = ({history}) => {
         if (refreshFailed) {
             history.push("/login?redirect=checkout/shipping")
         }
-    }, [refreshFailed])
+    }, [refreshFailed, history])
 
     const editPayload = (e) => {
         setPayload(prevState => {
@@ -77,7 +77,7 @@ const CheckoutShipping = ({history}) => {
         // we need to reset the user info because in the confirm step we check for userInfo.checkoutAddress.
         // If userInfo already exists in redux, it won't have a checkout address and we therefore get redirected to this screen
         dispatch({type: RESET_USER_INFO})
-    }, [addTemporaryAddressSuccess])
+    }, [addTemporaryAddressSuccess, history, dispatch])
 
     const goBack = (e) => {
         e.preventDefault()
@@ -138,21 +138,14 @@ const CheckoutShipping = ({history}) => {
                                            value={payload.country}
                                            onChange={(e) => editPayload(e)}/>
                                 <Grid sx={{...styles.checkoutButtonGrid}}>
-                                    {/*<LoadingButton variant='outlined' color="success" size="large"*/}
-                                    {/*               loading={addTemporaryAddressLoading}*/}
-                                    {/*               sx={styles.checkoutButton}*/}
-                                    {/*               startIcon={<Save/>} onClick={(e) => submit(e)}*/}
-                                    {/*               disabled={!payload.address || !payload.city || !payload.postCode || !payload.county || !payload.country}*/}
-                                    {/*>*/}
-                                    {/*    Confirm*/}
-                                    {/*</LoadingButton>*/}
-                                    <Button variant='outlined' color="success" size="large"
+                                    <LoadingButton variant='outlined' color="success" size="large"
+                                                   loading={addTemporaryAddressLoading}
                                                    sx={styles.checkoutButton}
                                                    startIcon={<Save/>} onClick={(e) => submit(e)}
                                                    disabled={!payload.address || !payload.city || !payload.postCode || !payload.county || !payload.country}
                                     >
                                         Confirm
-                                    </Button>
+                                    </LoadingButton>
                                 </Grid>
                                 {addTemporaryAddressError &&
                                 <span style={{

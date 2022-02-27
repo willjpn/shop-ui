@@ -50,11 +50,8 @@ export const basketReducer = (state = initialState, action) => {
         case EMPTY_BASKET:
             return {basket: []}
         case INCREMENT_PRODUCT:
-            console.log("action.payload", action.payload)
             const incrementBasket = state.basket.map(item => {
-                console.log("item._id", item._id)
                 if (item.product._id === action.payload) {
-                    console.log("item", item)
                     return {...item, quantity: item.quantity + 1}
                 }
                 return item

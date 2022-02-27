@@ -4,8 +4,7 @@ import {editProduct, fetchProduct} from "../actions/productActions";
 import {useDispatch, useSelector} from "react-redux";
 import Header from "./Header";
 import {EDIT_PRODUCT_RESET} from "../constants/productConstants";
-import {Button} from "@mui/material";
-// import LoadingButton from "@mui/lab/LoadingButton";
+import {LoadingButton} from "@mui/lab";
 
 const EditProduct = ({match, history}) => {
 
@@ -48,7 +47,7 @@ const EditProduct = ({match, history}) => {
         if (refreshFailed) {
             history.push(`/login?redirect=product/edit/${id}`)
         }
-    }, [refreshFailed])
+    }, [refreshFailed, history, id])
 
     const goBack = () => {
         history.push("/product-list")
@@ -90,12 +89,9 @@ const EditProduct = ({match, history}) => {
                                                        onChange={(e) => setPrice(e.target.value)}/>
                                             </div>
                                             <div>
-                                                {/*<LoadingButton onClick={submitProduct} loading={editProductLoading}>*/}
-                                                {/*    Submit*/}
-                                                {/*</LoadingButton>*/}
-                                                <Button onClick={submitProduct}>
+                                                <LoadingButton onClick={submitProduct} loading={editProductLoading}>
                                                     Submit
-                                                </Button>
+                                                </LoadingButton>
                                             </div>
                                             {editProductError &&
                                             <span style={{

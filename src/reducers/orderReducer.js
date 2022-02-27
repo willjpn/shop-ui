@@ -17,7 +17,6 @@ import {
     REMOVE_ORDER_SUCCESS,
     RESET_CREATE_ORDER_STATE, SET_ORDER_PAID_STATE
 } from "../constants/orderConstants";
-import {REMOVE_USER} from "../constants/userConstants";
 
 export const createOrderReducer = (state = {}, action) => {
     switch (action.type) {
