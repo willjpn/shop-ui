@@ -62,12 +62,10 @@ function pushSubscriber(cb) {
 
 axios.interceptors.request.use(function (config) {
     config.withCredentials = true
-    config.baseURL = "https://will-webshop.herokuapp.com"
-    // config.baseURL = "https://test-shop-server.herokuapp.com"
+    config.baseURL = "https://will-webshop-2a82k.ondigitalocean.app"
     // config.baseURL = "http://localhost:8000"
     config.headers = {
-        'Access-Control-Allow-Origin': "https://will-webshop.herokuapp.com",
-        // 'Access-Control-Allow-Origin': "https://test-shop-server.herokuapp.com",
+        'Access-Control-Allow-Origin': "https://will-webshop-2a82k.ondigitalocean.app",
         // 'Access-Control-Allow-Origin': "http://localhost:8000",
         "Content-Type": "application/json"
     }
