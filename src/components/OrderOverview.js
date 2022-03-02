@@ -157,7 +157,7 @@ const OrderOverview = ({match, history}) => {
                                                                 <Grid item xs={4} sx={{
                                                                     alignItems: 'center',
                                                                     display: 'flex', letterSpacing: '1px',
-                                                                }}>{`${item.quantity} + " x " + "£" + ${item.product.price} + " = " + "£" + ${item.quantity * item.product.price}`}</Grid>
+                                                                }}>{`${item.quantity} x £${item.product.price} = £${item.quantity * item.product.price}`}</Grid>
                                                                 <Grid xs={2}/>
                                                             </Grid>
                                                             <Divider variant="middle" sx={{color: 'lightgrey'}}/>
