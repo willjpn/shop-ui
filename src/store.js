@@ -6,7 +6,7 @@ import {
     deleteProductReducer,
     editProductReducer,
     productReducer,
-    productsReducer, queryProductsReducer
+    productsReducer, queryProductsReducer, queryReducer
 } from "./reducers/productReducer";
 import {authReducer, getClientIdReducer} from "./reducers/authReducer";
 import {
@@ -55,7 +55,8 @@ const reducer = combineReducers({
     editUserDetails: editUserDetailsReducer,
     userOrders: userOrdersReducer,
     addTemporaryAddress: addTemporaryAddressReducer,
-    getClientId: getClientIdReducer
+    getClientId: getClientIdReducer,
+    query: queryReducer,
 })
 
 const localStorageBasket = localStorage.getItem("basket") ? JSON.parse(localStorage.getItem("basket")) : []

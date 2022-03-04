@@ -71,9 +71,13 @@ const CheckoutConfirm = ({history}) => {
                 0
             ).toFixed(2)
 
-            setExVat(reduced.toString())
-            setVat((reduced / 5).toFixed(2).toString())
-            setTotal((reduced * 1.2).toFixed(2).toString())
+            setExVat((Math.round(reduced * 100) / 100).toFixed(2))
+            setVat((Math.round((reduced / 5) * 100) / 100).toFixed(2))
+            setTotal((Math.round((reduced * 1.2) * 100) / 100).toFixed(2))
+
+            // setExVat(reduced.toString())
+            // setVat((reduced / 5).toFixed(2).toString())
+            // setTotal((reduced * 1.2).toFixed(2).toString())
         }
     }, [basket, history])
 
@@ -104,10 +108,6 @@ const CheckoutConfirm = ({history}) => {
 
     const theme = useTheme();
     const showBasket = useMediaQuery(theme.breakpoints.up('md'));
-
-    // TODO- update stock count after order is placed or delivered
-
-    // TODO - add green and red loading and error text respectively
 
     return (
         <Grid container sx={{
@@ -140,7 +140,7 @@ const CheckoutConfirm = ({history}) => {
                             borderColor: 'lightgrey'
                         }} xs={6}>
                             <Grid sx={{position: 'relative'}}>
-                                <Grid borderBottom={1} xs={12} sx={{
+                                <Grid borderBottom={1} item xs={12} sx={{
                                     position: 'sticky', borderColor: 'lightgrey', borderWidth: 'thin',
                                     top: 0,
                                 }}>
@@ -174,12 +174,12 @@ const CheckoutConfirm = ({history}) => {
                                                                   display: 'flex',
                                                                   letterSpacing: '1px',
                                                               }}>{item.product.name}</Grid>
-                                                        <Grid xs={1}/>
+                                                        <Grid xs={1} item/>
                                                         <Grid item xs={4} sx={{
                                                             alignItems: 'center',
                                                             display: 'flex', letterSpacing: '1px',
                                                         }}>{`${item.quantity} x £${item.product.price} = £${item.quantity * item.product.price}`}</Grid>
-                                                        <Grid xs={2}/>
+                                                        <Grid xs={2} item/>
                                                     </Grid>
                                                     <Divider variant="middle" sx={{color: 'lightgrey'}}/>
                                                 </Fragment>
@@ -193,7 +193,7 @@ const CheckoutConfirm = ({history}) => {
                             </Grid>
                         </Grid>
                         <Grid item sx={{height: '65vh', borderRight: 1, borderColor: 'lightgrey'}} xs={4}>
-                            <Grid borderBottom={1} xs={12} sx={{
+                            <Grid borderBottom={1} item xs={12} sx={{
                                 position: 'sticky', borderColor: 'lightgrey', borderWidth: 'thin',
                                 top: 0,
                             }}>

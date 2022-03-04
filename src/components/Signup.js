@@ -51,7 +51,7 @@ const Signup = ({history}) => {
             alignItems: 'flex-start',
         }}>
 
-            <Grid xs={12} sx={{overflowY: 'auto'}}>
+            <Grid item xs={12} sx={{overflowY: 'auto'}}>
 
                 <Grid container sx={{height: '25vh'}}>
                     <Header history={history}/>
@@ -109,13 +109,6 @@ const Signup = ({history}) => {
                                 >
                                     Signup
                                 </LoadingButton>
-                                {/*<Button variant='outlined' color="success" size="large"*/}
-                                {/*               sx={styles.checkoutButton}*/}
-                                {/*               startIcon={<Save/>} onClick={(e) => submitHandler(e)}*/}
-                                {/*               disabled={!payload.firstName || !payload.lastName || !payload.email || !payload.password}*/}
-                                {/*>*/}
-                                {/*    Signup*/}
-                                {/*</Button>*/}
                                 <Button variant="text" color="primary" sx={{
                                     marginTop: '20px', marginBottom: '30px',textDecoration: 'none',
                                     color: 'black',

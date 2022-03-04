@@ -50,7 +50,7 @@ const ProductDetails = ({match, history}) => {
             alignItems: 'flex-start',
         }}>
 
-            <Grid xs={12} lg={9} sx={{overflowY: 'auto'}}>
+            <Grid xs={12} item lg={9} sx={{overflowY: 'auto'}}>
 
                 <Grid container sx={{height: '25vh'}}>
                     <Header history={history}/>
@@ -197,7 +197,7 @@ const ProductDetails = ({match, history}) => {
                             {/*COLUMN 3*/}
 
                             {/*COLUMN 4*/}
-                            <Grid xs={1}/>
+                            <Grid xs={1} item/>
                             {/*COLUMN 4*/}
 
                         </Grid>

@@ -1,8 +1,8 @@
-import {Box, Button, Grid} from "@mui/material";
+import {Box, Button, CircularProgress, Grid} from "@mui/material";
 import {ShoppingBasket} from "@mui/icons-material";
 import {addToBasket} from "../actions/basketActions";
 
-const HomeProducts = ({products, query, showPrice, showImage, dispatch, history}) => {
+const HomeProducts = ({products, query, showPrice, showImage, dispatch, history, loading}) => {
 
     const basketHandler = (e, product) => {
         e.stopPropagation()
@@ -31,7 +31,14 @@ const HomeProducts = ({products, query, showPrice, showImage, dispatch, history}
                 {showPrice && <Grid item md={2} sx={{fontSize: '20px', color: 'darkgrey'}}>Price</Grid>}
                 <Grid item xs={6} md={2} sx={{}}/>
             </Grid>
-            {!products.length && <span
+            {loading ?
+                <Grid container style={styles.productImageGrid}>
+                    <Grid item sx={{display: 'flex', justifyContent: 'center'}}>
+                        <CircularProgress sx={{marginY: '150px'}}/>
+                    </Grid>
+                </Grid>
+
+                : !products.length && <span
                 style={styles.noProducts}>{query ? "There are no products that match your query!" : "There are no products in the shop!"}</span>}
             {products.map((product) =>
                 (

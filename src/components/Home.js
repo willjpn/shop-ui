@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {queryProducts} from "../actions/productActions";
+import {getProductsByPage, getProductsByQuery} from "../actions/productActions";
 import {Grid, useMediaQuery} from "@mui/material";
 import {useTheme} from "@mui/material";
 import '../assets/Home.css'
@@ -9,9 +9,8 @@ import Header from "./Header";
 import HomeSearch from "./HomeSearch";
 import HomeProducts from "./HomeProducts";
 import HomeBasket from "./HomeBasket";
-import {Pagination} from "@mui/lab";
-
-// TODO - user is logged out on refresh now ??
+import {Pagination} from "@mui/material";
+import {SET_QUERY} from "../constants/productConstants";
 
 const Home = ({history}) => {
 
@@ -21,24 +20,27 @@ const Home = ({history}) => {
     const [page, setPage] = useState(1)
 
     const queryProductsState = useSelector(state => state.queryProducts)
-    const {products, count, totalCount} = queryProductsState
+    const {products, count, totalCount, loading} = queryProductsState
 
     const basketState = useSelector(state => state.basket)
     const {basket} = basketState
 
+    // whenever query changes, set page to 1
     useEffect(() => {
-        dispatch(queryProducts(query, page))
-    }, [dispatch, query, page])
+        dispatch({type: SET_QUERY, payload: query})
+        setPage(1)
+        dispatch(getProductsByQuery(query))
+    }, [query, dispatch])
+
+    // whenever page changes, fetch by page number and the query string saved in redux
+    useEffect(() => {
+        dispatch(getProductsByPage(page))
+    }, [page, dispatch])
 
     const theme = useTheme();
     const showBasket = useMediaQuery(theme.breakpoints.up('lg'));
     const showImage = useMediaQuery(theme.breakpoints.up('md'))
     const showPrice = useMediaQuery(theme.breakpoints.up('md'))
-
-    // whenever query changes, set page back to 1
-    useEffect(() => {
-        setPage(1)
-    }, [query])
 
     return (
         <Grid container sx={{
@@ -61,7 +63,7 @@ const Home = ({history}) => {
                     height: '65vh',
                 }}>
                     <HomeProducts products={products} query={query} showImage={showImage} showPrice={showPrice}
-                                  dispatch={dispatch} history={history}/>
+                                  dispatch={dispatch} history={history} loading={loading}/>
                     <Grid sx={{paddingY: '20px', display: 'flex', justifyContent: 'center'}}>
 
                         <Pagination count={count ? Math.ceil(count / 10) : 1} color="primary" size="large"

@@ -49,8 +49,6 @@ const OrderOverview = ({match, history}) => {
         dispatch(getOrder(id))
     }, [refreshFailed, history, id, dispatch])
 
-    // TODO - make sure prices have 2dp, e.g. £2.50 currently rounds to £2.5
-
     const goToOrders = (e) => {
         e.preventDefault()
         history.push("/user-profile")
@@ -94,7 +92,7 @@ const OrderOverview = ({match, history}) => {
                                     borderColor: 'lightgrey'
                                 }} xs={6}>
                                     <Grid sx={{position: 'relative'}}>
-                                        <Grid borderBottom={1} xs={12} sx={{
+                                        <Grid borderBottom={1} xs={12} item sx={{
                                             position: 'sticky', borderColor: 'lightgrey', borderWidth: 'thin',
                                             top: 0,
                                         }}>
@@ -153,12 +151,12 @@ const OrderOverview = ({match, history}) => {
                                                                           display: 'flex',
                                                                           letterSpacing: '1px',
                                                                       }}>{item.product.name}</Grid>
-                                                                <Grid xs={1}/>
+                                                                <Grid xs={1} item/>
                                                                 <Grid item xs={4} sx={{
                                                                     alignItems: 'center',
                                                                     display: 'flex', letterSpacing: '1px',
                                                                 }}>{`${item.quantity} x £${item.product.price} = £${item.quantity * item.product.price}`}</Grid>
-                                                                <Grid xs={2}/>
+                                                                <Grid item xs={2}/>
                                                             </Grid>
                                                             <Divider variant="middle" sx={{color: 'lightgrey'}}/>
                                                         </Fragment>
@@ -171,7 +169,7 @@ const OrderOverview = ({match, history}) => {
                                     </Grid>
                                 </Grid>
                                 <Grid item sx={{height: '65vh', borderRight: 1, borderColor: 'lightgrey'}} xs={4}>
-                                    <Grid borderBottom={1} xs={12} sx={{
+                                    <Grid borderBottom={1} item xs={12} sx={{
                                         position: 'sticky', borderColor: 'lightgrey', borderWidth: 'thin',
                                         top: 0,
                                     }}>

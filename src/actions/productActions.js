@@ -33,11 +33,24 @@ export const fetchProducts = () => async (dispatch) => {
     }
 }
 
-export const queryProducts = (query, page) => async (dispatch) => {
+export const getProductsByQuery = (query) => async (dispatch) => {
     try {
         dispatch({type: QUERY_PRODUCTS_REQUEST})
 
-        const response = await axios.post("/product/query", {query: query, page: page})
+        const response = await axios.post("/product/query", {query: query, page: 1})
+
+        dispatch({type: QUERY_PRODUCTS_SUCCESS, payload: response.data})
+
+    } catch (err) {
+        dispatch({type: QUERY_PRODUCTS_FAILURE, payload: new ErrorMessage(err).message})
+    }
+}
+
+export const getProductsByPage = (page) => async (dispatch, getState) => {
+    try {
+        dispatch({type: QUERY_PRODUCTS_REQUEST})
+
+        const response = await axios.post("/product/query", {query: getState().query.query, page: page})
 
         dispatch({type: QUERY_PRODUCTS_SUCCESS, payload: response.data})
 

@@ -46,8 +46,6 @@ const EditUserDetails = ({userInfo}) => {
         dispatch(editUserDetails(payload))
     }
 
-    // TODO - style error and loading messages for each component
-
     return (
         <Fragment>
                 <Fragment>

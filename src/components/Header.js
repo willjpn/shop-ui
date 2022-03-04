@@ -80,7 +80,7 @@ const Header = ({history}) => {
                                     Logout
                                 </Button>
                             </Grid>
-                            {!userInfo.isAdmin && <Grid xs={2} />}
+                            {!userInfo.isAdmin && <Grid item xs={2} />}
 
                         </Grid> :
                         <Grid container sx={{display: 'flex', height: '100%'}}>

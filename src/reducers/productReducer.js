@@ -17,7 +17,7 @@ import {
     REMOVE_PRODUCT,
     REMOVE_PRODUCT_FAILURE,
     REMOVE_PRODUCT_REQUEST,
-    REMOVE_PRODUCT_SUCCESS
+    REMOVE_PRODUCT_SUCCESS, SET_QUERY
 } from "../constants/productConstants";
 
 const initialProductsState = {
@@ -115,6 +115,15 @@ export const queryProductsReducer = (state = {products: []}, action) => {
             return {loading: false, products: action.payload.products, count: action.payload.count, totalCount: action.payload.totalCount}
         case QUERY_PRODUCTS_FAILURE:
             return {loading: false, products: [], error: action.payload}
+        default:
+            return state
+    }
+}
+
+export const queryReducer = (state = {query: ""}, action) => {
+    switch (action.type) {
+        case SET_QUERY:
+            return {query: action.payload}
         default:
             return state
     }

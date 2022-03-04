@@ -64,7 +64,14 @@ const NewProduct = ({history}) => {
 
     const submitProduct = (e) => {
         e.preventDefault()
-        dispatch(addProduct({name: payload.name, price: payload.price, productCode: payload.productCode, stockCount: payload.stockCount, description: payload.description, file}))
+        dispatch(addProduct({
+            name: payload.name,
+            price: payload.price,
+            productCode: payload.productCode,
+            stockCount: payload.stockCount,
+            description: payload.description,
+            file
+        }))
         history.push("/product-list")
     }
 

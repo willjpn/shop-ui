@@ -33,8 +33,6 @@ const ResetPassword = () => {
         }
     }, [success, dispatch])
 
-    // TODO - if error don't hide form, simply show error and still show form
-
     return (
         <Fragment>
             <TextField type="password" label="Current Password" value={originalPassword} name="originalPassword"

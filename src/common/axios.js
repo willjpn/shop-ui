@@ -54,19 +54,14 @@ function pushSubscriber(cb) {
     if (!alreadyRetriedRefresh) {
         subscribers.push(cb)
     }
-
 }
-
-
-// TODO - if logged out, what happens when trying to access admin only screens
 
 axios.interceptors.request.use(function (config) {
     config.withCredentials = true
-    config.baseURL = "https://will-webshop-2a82k.ondigitalocean.app"
-    // config.baseURL = "http://localhost:8000"
+
+    config.baseURL = "https://api.will-webshop.com"
     config.headers = {
-        'Access-Control-Allow-Origin': "https://will-webshop-2a82k.ondigitalocean.app",
-        // 'Access-Control-Allow-Origin': "http://localhost:8000",
+        'Access-Control-Allow-Origin': "https://api.will-webshop.com",
         "Content-Type": "application/json"
     }
     // if access token exists

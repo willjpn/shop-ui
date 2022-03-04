@@ -89,7 +89,7 @@ const CheckoutShipping = ({history}) => {
             alignItems: 'flex-start',
         }}>
 
-            <Grid xs={12} sx={{overflowY: 'auto'}}>
+            <Grid xs={12} item sx={{overflowY: 'auto'}}>
 
                 <Grid container sx={{height: '25vh'}}>
                     <Header history={history}/>
