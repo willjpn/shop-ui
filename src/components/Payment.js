@@ -20,7 +20,7 @@ const Payment = ({order}) => {
         dispatch(payOrder(order._id))
     };
 
-    const [{isPending, isResolved}] = usePayPalScriptReducer();
+    const [{isPending}] = usePayPalScriptReducer();
 
     return (
         <Grid sx={{marginTop: '25px', width: '100%'}}>
