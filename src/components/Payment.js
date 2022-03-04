@@ -1,9 +1,9 @@
-import {PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer} from "@paypal/react-paypal-js";
+import {PayPalScriptProvider, PayPalButtons} from "@paypal/react-paypal-js";
 import {useEffect} from "react"
 import {useDispatch, useSelector} from "react-redux";
 import {getClientId} from "../actions/authActions";
 import {payOrder} from "../actions/orderActions";
-import {CircularProgress, Grid} from "@mui/material";
+import {Grid} from "@mui/material";
 
 const Payment = ({order}) => {
 
@@ -20,11 +20,9 @@ const Payment = ({order}) => {
         dispatch(payOrder(order._id))
     };
 
-    const [{isPending}] = usePayPalScriptReducer();
-
     return (
         <Grid sx={{marginTop: '25px', width: '100%'}}>
-            {loading ? <h2>Loading</h2> : error ? <h2>{error}</h2> : isPending ? <CircularProgress/> :
+            {loading ? <h2>Loading</h2> : error ? <h2>{error}</h2> :
                 <PayPalScriptProvider options={{"client-id": clientId}}>
 
                     <PayPalButtons fundingSource="paypal"
