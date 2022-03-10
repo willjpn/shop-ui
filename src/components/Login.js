@@ -61,9 +61,9 @@ const Login = ({history, location}) => {
                             display: 'flex',
                             flexWrap: 'wrap',
                             justifyContent: 'center',
-                            border: 1,
-                            borderWidth: 'medium',
-                            borderColor: '#1f18a1',
+                            // border: 1,
+                            // borderWidth: 'medium',
+                            // borderColor: '#1f18a1',
                             height: '90%',
                             marginTop: '60px'
                         }}>
@@ -114,7 +114,7 @@ const Login = ({history, location}) => {
 
 const styles = {
     checkoutButtonGrid: {
-        display: 'flex', marginTop: 'auto', marginBottom: '20px',
+        display: 'flex', marginTop: 'auto',
         flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
         borderWidth: 'thick',
         borderColor: 'lightgrey',
