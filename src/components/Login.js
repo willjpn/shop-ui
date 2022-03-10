@@ -41,12 +41,12 @@ const Login = ({history, location}) => {
 
             <Grid item xs={12} sx={{overflowY: 'auto'}}>
 
-                <Grid container sx={{height: '25vh'}}>
+                <Grid container sx={{height: '20vh'}}>
                     <Header history={history}/>
                 </Grid>
                 <Divider variant="middle"/>
 
-                <Grid container sx={{height: '75vh', paddingTop: '25px'}}>
+                <Grid container sx={{height: '80vh', paddingTop: '25px'}}>
                     <Grid item xs={3}>
                         <Container sx={{display: 'flex', alignItems: 'center'}} maxWidth="xl">
                             <Button variant='text' size="large" startIcon={<ArrowBackIosNew/>}
@@ -61,9 +61,6 @@ const Login = ({history, location}) => {
                             display: 'flex',
                             flexWrap: 'wrap',
                             justifyContent: 'center',
-                            // border: 1,
-                            // borderWidth: 'medium',
-                            // borderColor: '#1f18a1',
                             height: '60%',
                             marginTop: '60px'
                         }}>
@@ -98,7 +95,6 @@ const Login = ({history, location}) => {
                                     fontSize: '20px',
                                     color: 'red',
                                     letterSpacing: '1px',
-
                                     textAlign: 'center'
                                 }}>{error}</span>}
                             </Grid>
