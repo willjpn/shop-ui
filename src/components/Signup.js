@@ -58,7 +58,7 @@ const Signup = ({history}) => {
                 </Grid>
                 <Divider variant="middle"/>
 
-                <Grid container sx={{height: '70vh', paddingTop: '25px'}}>
+                <Grid container sx={{height: '60vh', paddingTop: '25px'}}>
                     <Grid item xs={3}>
                         <Container sx={{display: 'flex', alignItems: 'center'}} maxWidth="xl">
                             <Button variant='text' size="large" startIcon={<ArrowBackIosNew/>}
@@ -117,12 +117,11 @@ const Signup = ({history}) => {
                         </Container>
                     </Grid>
                 </Grid>
-                <Grid sx={{display: 'flex', justifyContent: 'center', height: '10vh'}}>
+                <Grid sx={{display: 'flex', justifyContent: 'center', height: '20vh'}}>
                     {error && <span style={{
                         fontSize: '20px',
                         color: 'red',
                         letterSpacing: '1px',
-                        marginTop: 10,
                         textAlign: 'center'
                     }}>{error}</span>}
                 </Grid>
