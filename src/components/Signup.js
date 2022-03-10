@@ -58,7 +58,7 @@ const Signup = ({history}) => {
                 </Grid>
                 <Divider variant="middle"/>
 
-                <Grid container sx={{height: '80vh', paddingTop: '25px'}}>
+                <Grid container sx={{height: '70vh', paddingTop: '25px'}}>
                     <Grid item xs={3}>
                         <Container sx={{display: 'flex', alignItems: 'center'}} maxWidth="xl">
                             <Button variant='text' size="large" startIcon={<ArrowBackIosNew/>}
@@ -73,9 +73,6 @@ const Signup = ({history}) => {
                             display: 'flex',
                             flexWrap: 'wrap',
                             justifyContent: 'center',
-                            // border: 1,
-                            // borderWidth: 'medium',
-                            // borderColor: '#1f18a1',
                             height: '80%'
                         }}>
                             <span style={{...styles.subtitle, marginTop: '30px'}}>Create Account</span>
@@ -118,18 +115,16 @@ const Signup = ({history}) => {
                                 }} onClick={() => history.push('/login')}>Already have an account?</Button>
                             </Grid>
                         </Container>
-                        <Grid sx={{display: 'flex', justifyContent: 'center'}}>
-                            {error && <span style={{
-                                fontSize: '20px',
-                                color: 'red',
-                                letterSpacing: '1px',
-                                marginTop: 10,
-                                textAlign: 'center'
-                            }}>{error}</span>}
-                        </Grid>
-
                     </Grid>
-                    <Grid item xs={3}/>
+                </Grid>
+                <Grid sx={{display: 'flex', justifyContent: 'center', height: '10vh'}}>
+                    {error && <span style={{
+                        fontSize: '20px',
+                        color: 'red',
+                        letterSpacing: '1px',
+                        marginTop: 10,
+                        textAlign: 'center'
+                    }}>{error}</span>}
                 </Grid>
 
             </Grid>
