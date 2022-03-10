@@ -115,7 +115,6 @@ const Signup = ({history}) => {
                                 }} onClick={() => history.push('/login')}>Already have an account?</Button>
                                 {error && <Grid sx={{
                                     fontSize: '20px',
-                                    marginTop: '20px',
                                     color: 'red',
                                     letterSpacing: '1px',
                                     textAlign: 'center',
