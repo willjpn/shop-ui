@@ -73,9 +73,9 @@ const Signup = ({history}) => {
                             display: 'flex',
                             flexWrap: 'wrap',
                             justifyContent: 'center',
-                            border: 1,
-                            borderWidth: 'medium',
-                            borderColor: '#1f18a1',
+                            // border: 1,
+                            // borderWidth: 'medium',
+                            // borderColor: '#1f18a1',
                             height: '80%'
                         }}>
                             <span style={{...styles.subtitle, marginTop: '30px'}}>Create Account</span>

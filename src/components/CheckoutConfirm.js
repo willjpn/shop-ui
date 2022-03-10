@@ -5,7 +5,7 @@ import Header from "./Header";
 import {createOrder} from "../actions/orderActions";
 import {emptyBasket} from "../actions/basketActions";
 import {RESET_CREATE_ORDER_STATE} from "../constants/orderConstants";
-import {Box, Button, Container, Divider, Grid, useMediaQuery, useTheme} from "@mui/material";
+import {Box, Button, Container, Divider, Grid, LinearProgress, useMediaQuery, useTheme} from "@mui/material";
 import {ArrowBackIosNew, ShoppingBasket} from "@mui/icons-material";
 
 // TODO - remove devtools extension and check package.json
@@ -128,7 +128,9 @@ const CheckoutConfirm = ({history}) => {
             </Grid>
             {createOrderLoading ? <span>Creating a new order!</span> : createOrderError ?
                 <span>{createOrderError}</span>
-                : loading ? <span>Loading your information!</span> : error ? <span>{error}</span> :
+                : loading ? <Grid>
+                    <LinearProgress />
+                </Grid> : error ? <span>{error}</span> :
                     <Fragment>
                         <Grid item xs={1}/>
                         <Grid item sx={{

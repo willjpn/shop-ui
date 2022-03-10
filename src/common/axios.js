@@ -60,6 +60,7 @@ axios.interceptors.request.use(function (config) {
     config.withCredentials = true
 
     config.baseURL = "https://api.will-webshop.com"
+
     config.headers = {
         'Access-Control-Allow-Origin': "https://api.will-webshop.com",
         "Content-Type": "application/json"

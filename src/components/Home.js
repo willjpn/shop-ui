@@ -54,14 +54,15 @@ const Home = ({history}) => {
                     <Header history={history}/>
                 </Grid>
                 <Grid sx={{
-                    height: '15vh', display: 'flex', justifyContent: 'center',
+                    height: '10vh', display: 'flex', justifyContent: 'center'
                 }}>
                     <HomeSearch products={products} query={query} totalCount={totalCount} setQuery={setQuery}
                                 dispatch={dispatch}/>
                 </Grid>
                 <Grid sx={{
-                    height: '65vh',
+                    height: '70vh'
                 }}>
+                    <Grid sx={styles.productCountInfo}>Displaying {products.length} of {totalCount} items</Grid>
                     <HomeProducts products={products} query={query} showImage={showImage} showPrice={showPrice}
                                   dispatch={dispatch} history={history} loading={loading}/>
                     <Grid sx={{paddingY: '20px', display: 'flex', justifyContent: 'center'}}>
@@ -85,6 +86,16 @@ const Home = ({history}) => {
             </Grid>}
         </Grid>
     )
+}
+
+const styles = {
+    productCountInfo: {
+        justifyContent: 'center',
+        textAlign: 'center',
+        paddingY: 2,
+        fontSize: '18',
+        letterSpacing: '1px',
+    }
 }
 
 export default Home
