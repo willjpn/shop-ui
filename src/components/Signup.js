@@ -51,14 +51,14 @@ const Signup = ({history}) => {
             alignItems: 'flex-start',
         }}>
 
-            <Grid item xs={12} sx={{overflowY: 'auto'}}>
+            <Grid item xs={12}>
 
                 <Grid container sx={{height: '20vh'}}>
                     <Header history={history}/>
                 </Grid>
                 <Divider variant="middle"/>
 
-                <Grid container sx={{height: '60vh', paddingTop: '25px'}}>
+                <Grid container sx={{height: '60vh'}}>
                     <Grid item xs={3}>
                         <Container sx={{display: 'flex', alignItems: 'center'}} maxWidth="xl">
                             <Button variant='text' size="large" startIcon={<ArrowBackIosNew/>}
@@ -73,7 +73,7 @@ const Signup = ({history}) => {
                             display: 'flex',
                             flexWrap: 'wrap',
                             justifyContent: 'center',
-                            height: '80%'
+                            height: '100%',
                         }}>
                             <span style={{...styles.subtitle, marginTop: '30px'}}>Create Account</span>
 
@@ -113,19 +113,17 @@ const Signup = ({history}) => {
                                     letterSpacing: '1px',
                                     fontSize: '18px'
                                 }} onClick={() => history.push('/login')}>Already have an account?</Button>
+                                {error && <Grid sx={{
+                                    fontSize: '20px',
+                                    marginTop: '20px',
+                                    color: 'red',
+                                    letterSpacing: '1px',
+                                    textAlign: 'center',
+                                }}>{error}</Grid>}
                             </Grid>
                         </Container>
                     </Grid>
                 </Grid>
-                <Grid sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh'}}>
-                    {error && <Grid style={{
-                        fontSize: '20px',
-                        color: 'red',
-                        letterSpacing: '1px',
-                        textAlign: 'center',
-                    }}>{error}</Grid>}
-                </Grid>
-                <Grid sx={{height: '10vh'}}/>
             </Grid>
         </Grid>
     )
@@ -134,7 +132,7 @@ const Signup = ({history}) => {
 
 const styles = {
     checkoutButtonGrid: {
-        display: 'flex', marginTop: 'auto', marginBottom: '20px',
+        display: 'flex', marginBottom: '20px',
         flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
         borderWidth: 'thick',
         borderColor: 'lightgrey',

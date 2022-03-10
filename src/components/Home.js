@@ -54,14 +54,10 @@ const Home = ({history}) => {
                     <Header history={history}/>
                 </Grid>
                 <Grid sx={{
-                    height: '10vh', display: 'flex', justifyContent: 'center'
+                    height: '80vh'
                 }}>
                     <HomeSearch products={products} query={query} totalCount={totalCount} setQuery={setQuery}
                                 dispatch={dispatch}/>
-                </Grid>
-                <Grid sx={{
-                    height: '70vh'
-                }}>
                     <Grid sx={styles.productCountInfo}>Displaying {products.length} of {totalCount} items</Grid>
                     <HomeProducts products={products} query={query} showImage={showImage} showPrice={showPrice}
                                   dispatch={dispatch} history={history} loading={loading}/>
