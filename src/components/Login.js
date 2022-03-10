@@ -64,7 +64,7 @@ const Login = ({history, location}) => {
                             // border: 1,
                             // borderWidth: 'medium',
                             // borderColor: '#1f18a1',
-                            height: '90%',
+                            height: '60%',
                             marginTop: '60px'
                         }}>
                             <span style={{...styles.subtitle, marginTop: '30px'}}>Sign In</span>
