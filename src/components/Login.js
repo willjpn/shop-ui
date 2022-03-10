@@ -46,7 +46,7 @@ const Login = ({history, location}) => {
                 </Grid>
                 <Divider variant="middle"/>
 
-                <Grid container sx={{height: '60vh', paddingTop: '25px'}}>
+                <Grid container sx={{height: '75vh', paddingTop: '25px'}}>
                     <Grid item xs={3}>
                         <Container sx={{display: 'flex', alignItems: 'center'}} maxWidth="xl">
                             <Button variant='text' size="large" startIcon={<ArrowBackIosNew/>}
@@ -61,9 +61,9 @@ const Login = ({history, location}) => {
                             display: 'flex',
                             flexWrap: 'wrap',
                             justifyContent: 'center',
-                            // border: 1,
-                            // borderWidth: 'medium',
-                            // borderColor: '#1f18a1',
+                            border: 1,
+                            borderWidth: 'medium',
+                            borderColor: '#1f18a1',
                             height: '90%',
                             marginTop: '60px'
                         }}>
