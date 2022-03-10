@@ -117,15 +117,15 @@ const Signup = ({history}) => {
                         </Container>
                     </Grid>
                 </Grid>
-                <Grid sx={{display: 'flex', justifyContent: 'center', height: '20vh'}}>
-                    {error && <span style={{
+                <Grid sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh'}}>
+                    {error && <Grid style={{
                         fontSize: '20px',
                         color: 'red',
                         letterSpacing: '1px',
-                        textAlign: 'center'
-                    }}>{error}</span>}
+                        textAlign: 'center',
+                    }}>{error}</Grid>}
                 </Grid>
-
+                <Grid sx={{height: '10vh'}}/>
             </Grid>
         </Grid>
     )
