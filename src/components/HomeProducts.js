@@ -90,7 +90,7 @@ const styles = {
         borderWidth: 'thinner',
         borderColor: 'lightgrey',
         paddingBottom: 2,
-        paddingTop: 4,
+        paddingTop: 3,
         zIndex: 1,
     },
     noProducts: {

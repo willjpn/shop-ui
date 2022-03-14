@@ -62,7 +62,7 @@ const Home = ({history}) => {
                     <Grid sx={styles.productCountInfo}>Displaying {products.length} of {totalCount} items</Grid>
                     <HomeProducts products={products} query={query} showImage={showImage} showPrice={showPrice}
                                   dispatch={dispatch} history={history} loading={loading}/>
-                    <Grid sx={{paddingY: '10px', display: 'flex', justifyContent: 'center'}}>
+                    <Grid sx={{paddingY: '10px', display: 'flex', justifyContent: 'center', height: '85px', alignItems:'start'}}>
 
                         <Pagination count={count ? Math.ceil(count / 10) : 1} color="primary" size="large"
                                     defaultPage={1}
