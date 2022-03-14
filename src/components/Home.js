@@ -41,6 +41,7 @@ const Home = ({history}) => {
     const showBasket = useMediaQuery(theme.breakpoints.up('lg'));
     const showImage = useMediaQuery(theme.breakpoints.up('md'))
     const showPrice = useMediaQuery(theme.breakpoints.up('md'))
+    const showNavItems = useMediaQuery(theme.breakpoints.up('lg'))
 
     return (
         <Grid container sx={{
@@ -51,7 +52,7 @@ const Home = ({history}) => {
                       sx={{
                           height: '20vh',
                       }}>
-                    <Header history={history}/>
+                    <Header history={history} showNavItems={showNavItems} isHomeHeader={true}/>
                 </Grid>
                 <Grid sx={{
                     height: '80vh'

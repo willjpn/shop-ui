@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {addTemporaryAddress, getUser} from "../actions/userActions";
 import Header from "./Header";
 import {RESET_TEMPORARY_ADDRESS_STATE, RESET_USER_INFO} from "../constants/userConstants";
-import {Button, CircularProgress, Container, Divider, Grid, TextField} from "@mui/material";
+import {Button, CircularProgress, Container, Grid, TextField} from "@mui/material";
 import {ArrowBackIosNew, Save} from "@mui/icons-material";
 import {LoadingButton} from "@mui/lab";
 
@@ -94,8 +94,6 @@ const CheckoutShipping = ({history}) => {
                 <Grid container sx={{height: '25vh'}}>
                     <Header history={history}/>
                 </Grid>
-                <Divider variant="middle"/>
-
                 {loading ? <Grid>
                     <CircularProgress/>
                 </Grid> : error ? <span>{error}</span>

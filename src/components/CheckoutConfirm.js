@@ -74,10 +74,6 @@ const CheckoutConfirm = ({history}) => {
             setExVat((Math.round(reduced * 100) / 100).toFixed(2))
             setVat((Math.round((reduced / 5) * 100) / 100).toFixed(2))
             setTotal((Math.round((reduced * 1.2) * 100) / 100).toFixed(2))
-
-            // setExVat(reduced.toString())
-            // setVat((reduced / 5).toFixed(2).toString())
-            // setTotal((reduced * 1.2).toFixed(2).toString())
         }
     }, [basket, history])
 

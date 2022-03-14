@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../actions/userActions";
 
-const Header = ({history}) => {
+const Header = ({history, showNavItems, isHomeHeader}) => {
 
     const dispatch = useDispatch()
 
@@ -36,6 +36,7 @@ const Header = ({history}) => {
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
 
+                {(showNavItems || !isHomeHeader) &&
                 <Fragment>
 
                     {userInfo._id ?
@@ -114,6 +115,7 @@ const Header = ({history}) => {
                         </Grid>
                     }
                 </Fragment>
+                }
             </Grid>
         </Fragment>
     )
