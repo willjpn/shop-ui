@@ -54,11 +54,6 @@ const HomeBasket = ({basket, history, dispatch}) => {
                                 <span>{item.quantity}</span>
                                 <Button onClick={() => increment(item.product._id)} size="small"><Add
                                     color="success"/></Button>
-                                {/*<Button variant='outlined' color="error" size="small"*/}
-                                {/*        startIcon={<Delete/>} onClick={() => deleteFromBasket(item.product._id)}*/}
-                                {/*>*/}
-                                {/*    Remove*/}
-                                {/*</Button>*/}
                                 <Button onClick={() => deleteFromBasket(item.product._id)}>
                                     <Delete color="error"/>
                                 </Button>
@@ -86,7 +81,8 @@ const HomeBasket = ({basket, history, dispatch}) => {
 
 let styles = {
     basketTitle: {
-        marginTop: '20px',
+        marginTop: '35px',
+        marginBottom: '15px',
         fontSize: '24px',
         color: "darkgrey",
         textAlign: 'center'

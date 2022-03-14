@@ -90,8 +90,8 @@ const styles = {
         borderWidth: 'thinner',
         borderColor: 'lightgrey',
         paddingBottom: 2,
-        paddingTop: 2,
-        zIndex: 1
+        paddingTop: 4,
+        zIndex: 1,
     },
     noProducts: {
         fontSize: '24px',

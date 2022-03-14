@@ -47,7 +47,7 @@ const Home = ({history}) => {
         <Grid container sx={{
             alignItems: 'flex-start',
         }}>
-            <Grid item xs={12} lg={9} sx={{overflowY: 'auto'}}>
+            <Grid item xs={12} lg={9} sx={{overflowY: 'auto', borderRight: 1, borderColor: 'lightgrey', borderWidth: 'thick'}}>
                 <Grid container
                       sx={{
                           height: '20vh',
@@ -62,7 +62,7 @@ const Home = ({history}) => {
                     <Grid sx={styles.productCountInfo}>Displaying {products.length} of {totalCount} items</Grid>
                     <HomeProducts products={products} query={query} showImage={showImage} showPrice={showPrice}
                                   dispatch={dispatch} history={history} loading={loading}/>
-                    <Grid sx={{paddingY: '20px', display: 'flex', justifyContent: 'center'}}>
+                    <Grid sx={{paddingY: '10px', display: 'flex', justifyContent: 'center'}}>
 
                         <Pagination count={count ? Math.ceil(count / 10) : 1} color="primary" size="large"
                                     defaultPage={1}
@@ -73,8 +73,8 @@ const Home = ({history}) => {
             </Grid>
             {showBasket && <Grid item lg={3}
                                  sx={{
-                                     borderLeft: 1, borderWidth: 'thick',
-                                     borderColor: 'lightgrey',
+                                     // borderLeft: 1, borderWidth: 'thick',
+                                     // borderColor: 'lightgrey',
                                      height: '100vh',
                                      display: 'flex',
                                      flexDirection: 'column'
@@ -92,6 +92,7 @@ const styles = {
         paddingY: 2,
         fontSize: '18',
         letterSpacing: '1px',
+        marginTop: '15px'
     }
 }
 
